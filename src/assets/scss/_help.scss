@@ -1,0 +1,441 @@
+// ── Help Center ───────────────────────────────────────────────────────────
+.help-hero {
+  background: $navy;
+  background-image: radial-gradient(circle at 85% 10%, rgba($blue, 0.55), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba($green, 0.2), transparent 40%);
+  color: $white;
+  padding: clamp(3rem, 2rem + 3vw, 5rem) 0 clamp(2.5rem, 2rem + 2vw, 4rem);
+  .display-page,
+  h1 {
+    color: $white;
+  }
+  .eyebrow {
+    color: #8fd891;
+  }
+  .lead {
+    color: rgba($white, 0.82);
+    max-width: 40rem;
+  }
+  .crumbs a {
+    color: rgba($white, 0.8);
+  }
+}
+
+.help-hero-sm {
+  padding-top: 2rem;
+}
+
+// Pagefind's search box and results, in our colours.
+.help-search {
+  max-width: 46rem;
+  margin-top: 1.75rem;
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: #{$brand};
+  --pagefind-ui-text: #{$ink};
+  --pagefind-ui-background: #{$white};
+  --pagefind-ui-border: #{$line};
+  --pagefind-ui-tag: #{$sand};
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 14px;
+  --pagefind-ui-font: #{$font-sans};
+  .pagefind-ui__form::before {
+    background-color: $ink-3;
+  }
+  .pagefind-ui__search-input {
+    font-weight: 500;
+    height: 60px;
+    box-shadow: $shadow;
+  }
+  .pagefind-ui__drawer {
+    background: $white;
+    color: $ink;
+    border-radius: $radius-lg;
+    padding: 0.5rem 1.25rem 1rem;
+    margin-top: 0.75rem;
+    box-shadow: $shadow-lg;
+  }
+  .pagefind-ui__drawer:empty,
+  .pagefind-ui__drawer:not(:has(*)) {
+    display: none;
+  }
+  .pagefind-ui__result-link {
+    color: $brand;
+  }
+  .pagefind-ui__message {
+    color: $ink-2;
+  }
+  // On the staff and members pages the audience is already chosen.
+  &[data-audience="staff"] .pagefind-ui__filter-panel,
+  &[data-audience="members"] .pagefind-ui__filter-panel {
+    display: none !important;
+  }
+}
+
+.help-search-noscript {
+  margin-top: 1rem;
+  color: rgba($white, 0.85);
+}
+
+.crumbs {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  li + li::before {
+    content: "›";
+    margin: 0 0.375rem 0 0.125rem;
+    opacity: 0.6;
+  }
+}
+
+.help-bar {
+  border-bottom: 1px solid $line;
+  background: $white;
+  padding: 1rem 0 0.25rem;
+  .crumbs {
+    margin: 0 0 0.75rem;
+  }
+}
+
+.help-doors {
+  display: grid;
+  gap: 1rem;
+  @include media-breakpoint-up(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.help-door {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
+  padding: 1.5rem;
+  color: $ink;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  img {
+    flex-shrink: 0;
+  }
+  > span {
+    flex: 1;
+    min-width: 0;
+  }
+  strong {
+    display: block;
+    font-family: $font-display;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  span span {
+    color: $ink-2;
+  }
+  > .bi {
+    font-size: 1.25rem;
+    color: $blue;
+  }
+  &:hover {
+    color: $ink;
+    border-color: rgba($brand, 0.35);
+    box-shadow: $shadow;
+    transform: translateY(-2px);
+  }
+}
+
+.help-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    border-top: 1px solid $line;
+  }
+  a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    color: $ink;
+    font-weight: 500;
+    &::after {
+      content: "→";
+      color: $ink-3;
+      transition: transform 0.2s ease;
+    }
+    &:hover {
+      color: $brand;
+      &::after {
+        transform: translateX(3px);
+        color: $brand;
+      }
+    }
+  }
+}
+
+.help-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  p {
+    margin: 0.5rem 0 0;
+    color: $ink-2;
+    max-width: 40rem;
+  }
+}
+
+.help-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border: 1px solid $line;
+    background: $white;
+    border-radius: 999px;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $ink-2;
+    &:hover {
+      color: $brand;
+      border-color: rgba($brand, 0.35);
+    }
+  }
+}
+
+.help-cats {
+  display: grid;
+  gap: 1.25rem;
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.help-cat {
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
+  padding: 1.5rem;
+  scroll-margin-top: $header-height + 16px;
+  .help-list li:first-child {
+    border-top: 0;
+  }
+}
+
+.help-cat-head {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: $ink-2;
+  }
+}
+
+// ── An article ─────────────────────────────────────────────────────────────
+.help-article-wrap {
+  padding: 2.5rem 0 5rem;
+}
+
+.help-article-grid {
+  display: grid;
+  gap: 3rem;
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: 4rem;
+  }
+}
+
+.help-article {
+  max-width: 46rem;
+  min-width: 0;
+  h1 {
+    font-size: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+    margin-bottom: 0.75rem;
+  }
+}
+
+.help-lead {
+  font-size: 1.1875rem;
+  color: $ink-2;
+}
+
+.help-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+}
+
+.help-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: $sand;
+  color: $ink-2;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.help-tag-plan {
+  background: $blue-soft;
+  color: $brand;
+}
+
+.prose {
+  margin-top: 2rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: $ink;
+  h2 {
+    font-size: 1.375rem;
+    margin: 2.25rem 0 0.75rem;
+  }
+  ol,
+  ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+  }
+  ol {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0;
+    > li {
+      position: relative;
+      padding-left: 2.5rem;
+      counter-increment: step;
+      &::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0.125rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: $blue-soft;
+        color: $brand;
+        font-size: 0.875rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+  strong {
+    font-weight: 650;
+  }
+  blockquote {
+    background: $green-soft;
+    border-left: 4px solid $green;
+    border-radius: 0 $radius $radius 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  code {
+    font-size: 0.9em;
+    background: $sand;
+    color: $ink;
+    padding: 0.1em 0.35em;
+    border-radius: 0.3em;
+  }
+  a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.help-side {
+  @include media-breakpoint-up(lg) {
+    position: sticky;
+    top: $header-height + 24px;
+    align-self: start;
+  }
+}
+
+.help-side-card {
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li a {
+    display: block;
+    padding: 0.4rem 0.5rem;
+    margin: 0 -0.5rem;
+    border-radius: $radius-sm;
+    color: $ink-2;
+    font-size: 0.9375rem;
+    &:hover {
+      background: $sand;
+      color: $ink;
+    }
+    &[aria-current="page"] {
+      background: $blue-soft;
+      color: $brand;
+      font-weight: 600;
+    }
+  }
+  p {
+    font-size: 0.9375rem;
+    color: $ink-2;
+  }
+}
+
+.help-side-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: $ink !important;
+  margin-bottom: 0.75rem;
+}
+
+// ── Words we use ──────────────────────────────────────────────────────────
+.words-list {
+  margin: 2rem 0 0;
+  > div {
+    padding: 1rem 0;
+    border-top: 1px solid $line;
+    scroll-margin-top: $header-height + 16px;
+    &:target {
+      background: $blue-soft;
+      margin: 0 -1rem;
+      padding: 1rem;
+      border-radius: $radius-sm;
+    }
+  }
+  dt {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: $ink;
+    margin-bottom: 0.25rem;
+  }
+  dd {
+    margin: 0;
+    color: $ink-2;
+  }
+}

@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+bodyClass: page-help
+---
+{#- /help/staff/ or /help/members/: every category with its articles. -#}
+{%- set isStaff = audience == "staff" %}
+{%- set cats = helpCategories.staff if isStaff else helpCategories.members %}
+{%- set articles = collections.helpStaff if isStaff else collections.helpMembers %}
+{%- set searchFilter = audience %}
+
+<section class="help-hero help-hero-sm">
+  <div class="container-xl">
+    <nav aria-label="Breadcrumb">
+      <ol class="crumbs"><li><a href="/help/">Help Center</a></li></ol>
+    </nav>
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <img src="/assets/img/brand/{{ 'coopstaff' if isStaff else 'coopmember' }}-mark.svg" alt="" width="40" height="48">
+      <h1 class="display-page mb-0">{{ title }}</h1>
+    </div>
+    <p class="lead">{{ description }}</p>
+    {% include "partials/help-search.njk" %}
+  </div>
+</section>
+
+<section class="section pt-5">
+  <div class="container-xl">
+    <nav class="help-jump" aria-label="Topics">
+      {%- for c in cats %}<a href="#{{ c.slug }}">{% icon c.icon %} {{ c.title }}</a>{% endfor %}
+    </nav>
+    <div class="help-cats">
+      {%- for c in cats %}
+      {%- set list = articles | inCategory(c.slug) %}
+      {%- if list.length %}
+      <section class="help-cat" id="{{ c.slug }}">
+        <div class="help-cat-head">
+          <span class="mega-icon">{% icon c.icon %}</span>
+          <div>
+            <h2 class="h4 mb-1">{{ c.title }}</h2>
+            <p>{{ c.text }}</p>
+          </div>
+        </div>
+        <ul class="help-list">
+          {%- for a in list %}<li><a href="{{ a.url }}">{{ a.data.title }}</a></li>{% endfor %}
+        </ul>
+      </section>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

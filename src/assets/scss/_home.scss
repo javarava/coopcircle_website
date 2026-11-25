@@ -1,0 +1,421 @@
+// ── Hero ──────────────────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  padding: clamp(3rem, 2rem + 4vw, 6rem) 0 clamp(3rem, 2rem + 3vw, 5rem);
+  overflow: hidden;
+  // A quiet grid behind the hero, fading out.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba($brand, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($brand, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 70% 30%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 30%, #000 30%, transparent 75%);
+    pointer-events: none;
+  }
+  > .container-xl {
+    position: relative;
+  }
+}
+
+.display-hero {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.6rem + 4vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  .text-accent {
+    display: block;
+  }
+}
+
+// Stacked below 1,200 px: the illustration gets the full width.
+.hero-visual-col {
+  @include media-breakpoint-between(md, xl) {
+    max-width: 52rem;
+  }
+}
+
+.hero .lead {
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  @include media-breakpoint-down(sm) {
+    .btn {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.hero-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.9375rem;
+  color: $ink-3;
+  .bi {
+    color: $green-deep;
+  }
+}
+
+// ── Facts strip ────────────────────────────────────────────────────────────
+.facts {
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+  background: $white;
+}
+
+.facts-list {
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem 0;
+  display: grid;
+  gap: 0.875rem 2rem;
+  grid-template-columns: 1fr;
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $ink-2;
+    .bi {
+      font-size: 1.125rem;
+      color: $brand;
+    }
+  }
+}
+
+// ── Product tour ───────────────────────────────────────────────────────────
+.tour-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
+  margin: 0 -1rem 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @include media-breakpoint-up(md) {
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.tour-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border: 1px solid $line;
+  background: $white;
+  color: $ink-2;
+  font-weight: 600;
+  padding: 0.625rem 1.125rem;
+  border-radius: 999px;
+  transition: all 0.15s ease;
+  &:hover {
+    border-color: rgba($brand, 0.4);
+    color: $brand;
+  }
+  &.active {
+    background: $ink;
+    border-color: $ink;
+    color: $white;
+  }
+}
+
+.tour-pane {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-xl;
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  h3 {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    margin-bottom: 1.5rem;
+  }
+}
+
+.tour-visual {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(145deg, $blue-soft, $sand);
+  border-radius: $radius-lg;
+  padding: clamp(1.25rem, 0.75rem + 3vw, 3rem);
+  min-height: 20rem;
+  align-items: center;
+}
+
+// ── Audience cards ─────────────────────────────────────────────────────────
+.audience-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
+  padding: 2rem;
+  color: $ink;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  h3 {
+    margin: 1.25rem 0 0.75rem;
+  }
+  p {
+    color: $ink-2;
+    flex: 1;
+  }
+  &:hover {
+    color: $ink;
+    transform: translateY(-3px);
+    box-shadow: $shadow;
+    border-color: rgba($brand, 0.3);
+    .link-arrow .bi {
+      transform: translateX(3px);
+    }
+  }
+}
+
+.audience-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background: $brand;
+  color: $white;
+  font-size: 1.375rem;
+}
+
+// ── Steps ──────────────────────────────────────────────────────────────────
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  li {
+    display: flex;
+    gap: 1.25rem;
+    background: $white;
+    border: 1px solid $line;
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+  }
+  h3 {
+    margin-bottom: 0.375rem;
+  }
+  p {
+    margin: 0;
+    color: $ink-2;
+  }
+}
+
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: $green-soft;
+  color: $green-deep;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+// ── Security ───────────────────────────────────────────────────────────────
+.security-grid {
+  display: grid;
+  gap: 1rem;
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+  > div {
+    background: rgba($white, 0.06);
+    border: 1px solid rgba($white, 0.12);
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+    margin: 1rem 0 0.5rem;
+  }
+  p {
+    margin: 0;
+    color: rgba($white, 0.78);
+    font-size: 0.9375rem;
+  }
+}
+
+.security-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba($green, 0.2);
+  color: #8fd891;
+  font-size: 1.25rem;
+}
+
+// ── Plans ──────────────────────────────────────────────────────────────────
+.plan-card {
+  position: relative;
+  height: 100%;
+  background: $white;
+  border: 1px solid $line;
+  border-radius: $radius-lg;
+  padding: 1.75rem;
+  h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.plan-card-popular {
+  border: 2px solid $brand;
+  box-shadow: $shadow;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  background: $brand;
+  color: $white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.plan-price {
+  font-family: $font-display;
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  .plan-per {
+    font-family: $font-sans;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: $ink-3;
+  }
+}
+
+.plan-blurb {
+  color: $ink-2;
+  min-height: 3rem;
+}
+
+.plan-limits {
+  list-style: none;
+  padding: 1rem 0 0;
+  margin: 0;
+  border-top: 1px solid $line;
+  li {
+    font-size: 0.9375rem;
+    color: $ink-2;
+    padding: 0.25rem 0;
+  }
+}
+
+// ── FAQ ────────────────────────────────────────────────────────────────────
+.faq {
+  .accordion-item {
+    border-radius: $radius !important;
+    margin-bottom: 0.75rem;
+    border: 1px solid $line;
+    overflow: hidden;
+  }
+  .accordion-header {
+    font-family: $font-sans;
+  }
+  .accordion-button {
+    font-weight: 600;
+    font-size: 1.0625rem;
+    padding: 1.25rem 1.5rem;
+    color: $ink;
+    &:not(.collapsed) {
+      box-shadow: none;
+    }
+  }
+  .accordion-body {
+    padding: 0 1.5rem 1.5rem;
+    color: $ink-2;
+  }
+}
+
+// ── Call to action ─────────────────────────────────────────────────────────
+.cta-band {
+  padding: 0 0 clamp(4rem, 3rem + 3vw, 6rem);
+  background: $sand;
+}
+
+.cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: $navy;
+  background-image: radial-gradient(circle at 85% 20%, rgba($blue, 0.55), transparent 45%),
+    radial-gradient(circle at 10% 100%, rgba($green, 0.25), transparent 40%);
+  border-radius: $radius-xl;
+  padding: clamp(2rem, 1.5rem + 3vw, 4rem);
+  color: $white;
+  h2 {
+    color: $white;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin: 0;
+    color: rgba($white, 0.8);
+    font-size: 1.125rem;
+  }
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+    .btn {
+      flex: 1 1 100%;
+    }
+  }
+}

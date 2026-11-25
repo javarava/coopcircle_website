@@ -1,0 +1,186 @@
+---
+layout: layouts/base.njk
+title: Pricing
+description: "CoopCircle plans for cooperative societies: free for up to 10 members, then Starter, Growth, Professional and Enterprise. Pay every month, or pay for a year and get two months free."
+faqs:
+  - q: "How do we pay?"
+    a: "By card, through Paystack, every month or once a year. Your president chooses a plan in Coop Staff, under More → Subscription."
+  - q: "Can we change plans later?"
+    a: "Yes. As your society grows, move to a bigger or smaller plan in Coop Staff, under More → Subscription."
+  - q: "What happens if we reach a limit?"
+    a: "CoopCircle tells you before you go over the limit, for example before you add one member too many. It asks you to move to a bigger plan. Nothing you have recorded is lost."
+  - q: "What happens if we stop paying?"
+    a: "When the time you paid for ends, your society moves to the Free plan. Your records stay. Your leaders can download all of your society’s data at any time."
+  - q: "Do members pay anything?"
+    a: "Members don’t pay for CoopCircle. If your society takes payments in the app, members pay a small fee when they pay online. They see the fee before they pay. Bank transfers have no fee."
+  - q: "We’re a large society or a union. What about us?"
+    a: "We set up Enterprise with you: limits that fit your society, every branch, and reports for the whole society together. Talk to us and we’ll agree it together."
+---
+{#- Each row: label, then Free, Starter, Growth, Professional, Enterprise.
+    true = included, false = not, text = as written. -#}
+{%- set rows = [
+  { group: "Size" },
+  { label: "Active members", cells: ["10", "50", "200", "500", "As agreed"] },
+  { label: "Staff accounts", cells: ["2", "3", "10", "20", "Unlimited"] },
+  { label: "Branches", cells: ["1", "1", "1", "5", "Unlimited"] },
+  { label: "Savings types, loan types and contribution types", cells: ["1 of each", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+  { label: "Empowerment programmes", cells: ["1", "3", "5", "20", "Unlimited"] },
+  { group: "Members" },
+  { label: "Coop Member app for every member", cells: [true, true, true, true, true] },
+  { label: "Members pay in the app (online or transfer)", cells: [false, true, true, true, true] },
+  { label: "Member statements in the app", cells: [false, true, true, true, true] },
+  { label: "Member credit scores", cells: [false, false, true, true, true] },
+  { label: "Automatic reminders", cells: [false, false, true, true, true] },
+  { group: "Running the society" },
+  { label: "Savings, dues, loans, shares, insurance and notices", cells: [true, true, true, true, true] },
+  { label: "Expenses", cells: [false, true, true, true, true] },
+  { label: "Staff permissions", cells: ["Set by role", "Set by role", "Set for each person", "Set for each person", "Set for each person"] },
+  { label: "Upload members and balances from Excel", cells: [false, "Blank Excel file only", true, true, true] },
+  { label: "Approval steps and change history", cells: [false, false, false, true, true] },
+  { label: "Several branches", cells: [false, false, false, true, true] },
+  { group: "Reports and data" },
+  { label: "Reports", cells: [false, "Savings, loans, withdrawals, statements", "Plus dues, cash, expenses, shares, unpaid repayments, balances", "Plus changes over time, branches side by side, emailed regularly", "Plus the whole society together"] },
+  { label: "Download reports and statements (PDF or spreadsheet)", cells: [false, true, true, true, true] },
+  { label: "Download all your society’s data", cells: [true, true, true, true, true] }
+] -%}
+
+<section class="page-hero pricing-hero">
+  <div class="container-xl">
+    <div class="section-head mx-auto text-center">
+      <p class="eyebrow justify-content-center">Pricing</p>
+      <h1 class="display-page">Start free. Pay as your society grows.</h1>
+      <p class="lead mx-auto">Every plan includes Coop Staff and the Coop Member app. Prices in naira.</p>
+      <div class="billing-toggle" role="group" aria-label="How often you pay">
+        <button type="button" class="active" data-billing="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-billing="annual" aria-pressed="false">Yearly <span>2 months free</span></button>
+      </div>
+    </div>
+
+    <div class="plans-grid">
+      {%- for plan in plans %}{% if plan.code != "enterprise" %}
+      <div class="plan-card plan-card-full{% if plan.popular %} plan-card-popular{% endif %}">
+        {%- if plan.popular %}<span class="plan-badge">Most popular</span>{% endif %}
+        <h2 class="h3">{{ plan.name }}</h2>
+        <p class="plan-blurb">{{ plan.blurb }}</p>
+        <p class="plan-price">
+          <span data-price-monthly>{{ plan.monthly | naira }}</span><span data-price-annual hidden>{{ plan.annual | naira }}</span>
+        </p>
+        <p class="plan-period">
+          {%- if plan.monthly == 0 %}Free, for as long as you like
+          {%- else %}<span data-price-monthly>a month</span><span data-price-annual hidden>a year · save {{ (plan.monthly * 2) | naira }}</span>{% endif -%}
+        </p>
+        <a class="btn {% if plan.popular %}btn-primary{% else %}btn-outline-dark{% endif %} w-100" href="{{ site.apps.signUp }}">{{ "Start free" if plan.monthly == 0 else "Get started" }}</a>
+        <ul class="plan-limits">
+          <li>{{ plan.members }}</li>
+          <li>{{ plan.staff }}</li>
+          <li>{{ plan.branches }}</li>
+        </ul>
+        <ul class="plan-features">
+          {%- for h in plan.highlights %}<li>{{ h }}</li>{% endfor %}
+        </ul>
+      </div>
+      {%- endif %}{% endfor %}
+    </div>
+
+    {#- Enterprise: one wide card under the others. -#}
+    {%- set ent = plans | find("code", "enterprise") %}
+    <div class="plan-card plan-card-wide">
+      <div class="plan-wide-intro">
+        <h2 class="h3">{{ ent.name }}</h2>
+        <p class="plan-blurb">{{ ent.blurb }}</p>
+        <p class="plan-price">Let’s talk</p>
+        <p class="plan-period">A price that fits your society</p>
+      </div>
+      <ul class="plan-limits">
+        <li>{{ ent.members }}</li>
+        <li>{{ ent.staff }}</li>
+        <li>{{ ent.branches }}</li>
+      </ul>
+      <ul class="plan-features">
+        {%- for h in ent.highlights %}<li>{{ h }}</li>{% endfor %}
+      </ul>
+      <div class="plan-wide-action">
+        <a class="btn btn-outline-dark w-100" href="/contact/">Talk to us</a>
+      </div>
+    </div>
+    <p class="fine-print text-center">Every society starts on Free. You pay for other plans by card, through Paystack. You can change plans at any time.</p>
+  </div>
+</section>
+
+<section class="section section-tint" id="compare">
+  <div class="container-xl">
+    <div class="section-head">
+      <p class="eyebrow">Compare plans</p>
+      <h2>Everything in each plan.</h2>
+    </div>
+    <div class="compare-wrap" tabindex="0" role="region" aria-label="Plan comparison table">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th scope="col"><span class="visually-hidden">Feature</span></th>
+            {%- for plan in plans %}<th scope="col">{{ plan.name }}</th>{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for row in rows %}
+            {%- if row.group %}
+          <tr class="compare-group"><th scope="rowgroup" colspan="6">{{ row.group }}</th></tr>
+            {%- else %}
+          <tr>
+            <th scope="row">{{ row.label }}</th>
+            {%- for c in row.cells %}
+            <td>
+              {%- if c === true %}<span class="yes">{% icon "check-lg" %}<span class="visually-hidden">Included</span></span>
+              {%- elif c === false %}<span class="no" aria-hidden="true">—</span><span class="visually-hidden">Not included</span>
+              {%- else %}{{ c }}{% endif -%}
+            </td>
+            {%- endfor %}
+          </tr>
+            {%- endif %}
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-xl">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <p class="eyebrow">Billing questions</p>
+        <h2>Paying for CoopCircle.</h2>
+        <p class="text-muted-strong">Something else? <a href="/contact/">Get in touch</a>.</p>
+      </div>
+      <div class="col-lg-8">
+        <div class="accordion faq" id="faq">
+          {%- for f in faqs %}
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ loop.index }}" aria-expanded="false" aria-controls="faq-{{ loop.index }}">{{ f.q }}</button>
+            </h3>
+            <div id="faq-{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#faq">
+              <div class="accordion-body">{{ f.a }}</div>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set ctaPlain = true %}
+{% include "partials/cta.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>

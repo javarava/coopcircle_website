@@ -1,0 +1,318 @@
+// ── Header ────────────────────────────────────────────────────────────────
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  // The frosted background sits on a layer of its own: a backdrop-filter on
+  // the header itself would trap the fixed phone menu inside it.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba($paper, 0.9);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+  }
+
+  &.is-scrolled {
+    border-bottom-color: $line;
+    box-shadow: 0 6px 20px -16px rgba($ink, 0.4);
+  }
+
+  .navbar {
+    min-height: $header-height;
+    padding: 0;
+  }
+
+  // The mega menus line up with the page's width.
+  .navbar > .container-xl {
+    position: relative;
+  }
+
+  .navbar-brand img {
+    display: block;
+    height: 34px;
+    width: auto;
+  }
+
+  .navbar-toggler {
+    border: 0;
+    padding: 0.5rem;
+    font-size: 1.75rem;
+    color: $ink;
+    line-height: 1;
+  }
+}
+
+.main-nav {
+  .nav-link {
+    font-weight: 500;
+    color: $ink;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    // No pill or border on hover, open or click: the colour changes only.
+    // Keyboard focus keeps its outline (:focus-visible, in _base.scss).
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    &.show {
+      color: $brand;
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+  .dropdown-toggle::after {
+    border: 0;
+    width: 0.55em;
+    height: 0.55em;
+    margin-left: 0.4em;
+    vertical-align: 0.15em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.2s ease;
+  }
+  .dropdown-toggle.show::after {
+    transform: rotate(225deg) translate(-2px, -1px);
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-signin {
+  color: $ink;
+  font-weight: 600;
+  text-decoration: none;
+  &:hover {
+    color: $brand;
+  }
+}
+
+.signin-menu {
+  min-width: 16rem;
+  padding: 0.5rem;
+  .dropdown-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0.75rem;
+    border-radius: $radius-sm;
+    white-space: normal;
+    strong {
+      display: block;
+      font-weight: 600;
+    }
+    span span {
+      display: block;
+      font-size: 0.875rem;
+      color: $ink-3;
+    }
+  }
+}
+
+// ── Mega menus ─────────────────────────────────────────────────────────────
+.mega-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $ink-3;
+  margin: 0 0 0.5rem 0.75rem;
+}
+
+.mega-item {
+  display: flex;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: $radius;
+  color: $ink;
+  &:hover {
+    background: $sand;
+    color: $ink;
+    .mega-icon {
+      background: $brand;
+      color: $white;
+    }
+  }
+}
+
+.mega-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: $blue-soft;
+  color: $brand;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mega-title {
+  display: block;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mega-text {
+  display: block;
+  font-size: 0.875rem;
+  color: $ink-3;
+  line-height: 1.45;
+  margin-top: 0.125rem;
+}
+
+.mega-aside {
+  .mega-app {
+    display: flex;
+    gap: 0.875rem;
+    align-items: flex-start;
+    padding: 0.875rem;
+    border-radius: $radius;
+    background: $white;
+    border: 1px solid $line;
+    color: $ink;
+    margin-bottom: 0.75rem;
+    img {
+      height: 40px;
+      width: auto;
+    }
+    strong {
+      display: block;
+    }
+    span span {
+      display: block;
+      font-size: 0.875rem;
+      color: $ink-3;
+    }
+    &:hover {
+      border-color: rgba($brand, 0.4);
+    }
+  }
+  .mega-more {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+    font-weight: 600;
+    margin: 0.25rem 0 0 0.25rem;
+  }
+}
+
+// Phones and tablets: a full-screen panel with the menus open in place.
+@include media-breakpoint-down(lg) {
+  .site-header .offcanvas {
+    background: $paper;
+  }
+  .site-header .offcanvas-header {
+    min-height: $header-height;
+    border-bottom: 1px solid $line;
+  }
+  .site-header .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  .main-nav {
+    .nav-link {
+      font-size: 1.125rem;
+      padding: 0.875rem 0.75rem;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0;
+    }
+    .dropdown-menu {
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+      padding: 0 0 0.5rem;
+    }
+  }
+  .mega-aside {
+    margin-top: 1rem;
+  }
+  .nav-actions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: auto;
+    .btn {
+      width: 100%;
+      padding-top: 0.875rem;
+      padding-bottom: 0.875rem;
+    }
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}
+
+// Desktop: menus drop below the bar, as wide panels.
+@include media-breakpoint-up(lg) {
+  .main-nav {
+    margin-left: 2rem;
+    gap: 1.25rem;
+  }
+  .site-header .offcanvas-body {
+    align-items: center;
+  }
+  .nav-actions {
+    margin-left: auto;
+  }
+  .main-nav .mega {
+    position: static;
+  }
+  .mega-menu {
+    left: 0;
+    right: 0;
+    top: calc(100% - 6px);
+    margin-top: 0;
+    padding: 1.25rem;
+    border-radius: $radius-lg;
+    border: 1px solid $line;
+    box-shadow: $shadow-lg;
+    &.mega-menu-sm {
+      left: auto;
+      right: auto;
+      width: 30rem;
+      margin-left: 6rem;
+    }
+  }
+  .mega-grid {
+    display: grid;
+    grid-template-columns: 1fr 18rem;
+    gap: 1.25rem;
+  }
+  .mega-list-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.25rem;
+    align-content: start;
+    .mega-heading {
+      grid-column: 1 / -1;
+    }
+  }
+  .mega-aside {
+    background: $sand;
+    border-radius: $radius;
+    padding: 1rem;
+  }
+}
+
+

@@ -1,0 +1,119 @@
+---
+layout: layouts/base.njk
+title: Contact us
+description: "Book a demo of CoopCircle, ask about plans and Enterprise, or get help. We’ll reply by email."
+---
+<section class="page-hero contact-hero">
+  <div class="container-xl">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <p class="eyebrow">Contact us</p>
+        <h1 class="display-page">Let’s talk about your society.</h1>
+        <p class="lead">Book a demo, ask about plans or Enterprise, or tell us what you need. We’ll reply by email.</p>
+
+        <div class="contact-ways">
+          <a class="contact-way" href="/help/">
+            <span class="mega-icon">{% icon "life-preserver" %}</span>
+            <span><strong>Help Center</strong><span>Guides for staff and members.</span></span>
+          </a>
+          <a class="contact-way" href="mailto:{{ site.company.email }}">
+            <span class="mega-icon">{% icon "envelope" %}</span>
+            <span><strong>Email</strong><span>{{ site.company.email }}</span></span>
+          </a>
+          <div class="contact-way contact-way-note">
+            <span class="mega-icon">{% icon "person-badge" %}</span>
+            <span><strong>Are you a member?</strong><span>Questions about your balance, a payment or a loan are best answered by your society’s staff.</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <form class="contact-form" id="contact-form" action="/api/contact" method="post" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label" for="c-name">Your name</label>
+              <input class="form-control" id="c-name" name="name" autocomplete="name" required maxlength="120">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="c-email">Email</label>
+              <input class="form-control" id="c-email" name="email" type="email" autocomplete="email" required maxlength="200">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="c-phone">Phone <span class="optional">(optional)</span></label>
+              <input class="form-control" id="c-phone" name="phone" type="tel" autocomplete="tel" maxlength="30">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="c-society">Society <span class="optional">(optional)</span></label>
+              <input class="form-control" id="c-society" name="society" autocomplete="organization" maxlength="160">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="c-role">Your role <span class="optional">(optional)</span></label>
+              <select class="form-select" id="c-role" name="role">
+                <option value="">Choose…</option>
+                <option value="president">President or chairman</option>
+                <option value="executive">Other executive</option>
+                <option value="staff">Branch staff</option>
+                <option value="member">Member</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label" for="c-size">Members <span class="optional">(optional)</span></label>
+              <select class="form-select" id="c-size" name="size">
+                <option value="">Choose…</option>
+                <option>Under 50</option>
+                <option>50–200</option>
+                <option>200–500</option>
+                <option>500–2,000</option>
+                <option>Over 2,000</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="c-topic">What’s it about?</label>
+              <select class="form-select" id="c-topic" name="topic" required>
+                <option value="demo">Book a demo</option>
+                <option value="sales">Plans and pricing</option>
+                <option value="enterprise">Enterprise</option>
+                <option value="help">Help with CoopCircle</option>
+                <option value="partnership">Partnership</option>
+                <option value="press">Press</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="c-message">Message</label>
+              <textarea class="form-control" id="c-message" name="message" rows="6" required minlength="10" maxlength="4000"
+                        placeholder="Tell us about your society and what you’d like to know."></textarea>
+            </div>
+            {#- Hidden from people; bots fill it in. -#}
+            <div class="contact-trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            {%- if site.turnstileSiteKey %}
+            <div class="col-12">
+              <div class="cf-turnstile" data-sitekey="{{ site.turnstileSiteKey }}" data-theme="light"></div>
+            </div>
+            {%- endif %}
+            <div class="col-12">
+              <p class="form-note">We use these details only to reply to you. See our <a href="/privacy/">privacy notice</a>.</p>
+              <div class="contact-status" id="contact-status" role="status" aria-live="polite"></div>
+              <button class="btn btn-primary btn-lg" type="submit" id="contact-send">Send message</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="contact-done" id="contact-done" hidden tabindex="-1">
+          <span class="ui-success">{% icon "check-lg" %}</span>
+          <h2>Thanks, we’ve got your message.</h2>
+          <p>We’ll reply to the email you gave us. In the meantime, the <a href="/help/">Help Center</a> may have your answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if site.turnstileSiteKey %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{%- endif %}
+<script src="/assets/js/contact.js" defer></script>

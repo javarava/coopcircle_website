@@ -1,0 +1,98 @@
+{#- The sticky header: logo, Product and Who it's for menus (mega menus from
+    992 px, a full-screen panel below), Pricing, Help Center, Sign in and
+    Start free. -#}
+{%- macro menuItem(item) -%}
+<a class="mega-item" href="{{ item.url }}">
+  <span class="mega-icon">{% icon item.icon %}</span>
+  <span>
+    <span class="mega-title">{{ item.title }}</span>
+    <span class="mega-text">{{ item.text }}</span>
+  </span>
+</a>
+{%- endmacro -%}
+<header class="site-header" data-header>
+  <nav class="navbar navbar-expand-lg" aria-label="Main">
+    <div class="container-xl">
+      <a class="navbar-brand" href="/" aria-label="CoopCircle home">
+        <img src="/assets/img/brand/coopcircle-logo.svg" alt="CoopCircle" width="160" height="35">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#siteMenu"
+              aria-controls="siteMenu" aria-label="Open the menu">
+        {% icon "list" %}
+      </button>
+
+      <div class="offcanvas offcanvas-end offcanvas-lg" tabindex="-1" id="siteMenu" aria-labelledby="siteMenuLabel">
+        <div class="offcanvas-header">
+          <img id="siteMenuLabel" src="/assets/img/brand/coopcircle-logo.svg" alt="CoopCircle" width="140" height="31">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#siteMenu" aria-label="Close the menu"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav main-nav">
+            <li class="nav-item dropdown mega">
+              <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                Product
+              </button>
+              <div class="dropdown-menu mega-menu">
+                <div class="mega-grid">
+                  <div class="mega-list mega-list-2">
+                    <p class="mega-heading">What it does</p>
+                    {%- for item in nav.product %}{{ menuItem(item) }}{% endfor %}
+                  </div>
+                  <aside class="mega-aside">
+                    <p class="mega-heading">Two apps, one society</p>
+                    <a class="mega-app" href="/for/leadership/">
+                      <img src="/assets/img/brand/coopstaff-mark.svg" alt="" width="36" height="43">
+                      <span><strong>Coop Staff</strong><span>For leaders and branch staff, on the web and phones.</span></span>
+                    </a>
+                    <a class="mega-app" href="/for/members/">
+                      <img src="/assets/img/brand/coopmember-mark.svg" alt="" width="36" height="43">
+                      <span><strong>Coop Member</strong><span>For members: balances, loans and paying in.</span></span>
+                    </a>
+                    <a class="mega-more" href="/security/">How we keep your money safe {% icon "arrow-right" %}</a>
+                  </aside>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown mega">
+              <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                Who it’s for
+              </button>
+              <div class="dropdown-menu mega-menu mega-menu-sm">
+                <div class="mega-list">
+                  <p class="mega-heading">Everyone in the society</p>
+                  {%- for item in nav.audiences %}{{ menuItem(item) }}{% endfor %}
+                </div>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/pricing/">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="/help/">Help Center</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="dropdown">
+              <button class="btn btn-link nav-signin dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sign in
+              </button>
+              <ul class="dropdown-menu dropdown-menu-lg-end signin-menu">
+                <li>
+                  <a class="dropdown-item" href="{{ site.apps.staffSignIn }}">
+                    <img src="/assets/img/brand/coopstaff-mark.svg" alt="" width="24" height="29">
+                    <span><strong>Coop Staff</strong><span>Leaders and branch staff</span></span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ site.apps.memberSignIn }}">
+                    <img src="/assets/img/brand/coopmember-mark.svg" alt="" width="24" height="29">
+                    <span><strong>Coop Member</strong><span>Members of a society</span></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a class="btn btn-primary" href="{{ site.apps.signUp }}">Start free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

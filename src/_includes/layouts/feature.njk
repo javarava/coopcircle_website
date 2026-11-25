@@ -1,0 +1,135 @@
+---
+layout: layouts/base.njk
+---
+{#- A product or audience page, from its front matter:
+    hero: { eyebrow, title, lead, visual, plan, secondary: { label, url } }
+    highlights: [{ icon, title, text }]
+    blocks: [{ eyebrow, title, text, points: [], visual, plan, link: { label, url } }]
+    faqs: [{ q, a }]
+    related: [urls from nav.product / nav.audiences]
+    ctaTitle, ctaText -#}
+{%- from "partials/visuals.njk" import visual -%}
+
+<section class="page-hero">
+  <div class="container-xl">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="eyebrow">{{ hero.eyebrow }}</p>
+        <h1 class="display-page">{{ hero.title }}</h1>
+        <p class="lead">{{ hero.lead }}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="{{ site.apps.signUp }}">Start free</a>
+          {%- set secondary = hero.secondary or { label: "Book a demo", url: "/contact/" } %}
+          <a class="btn btn-outline-dark btn-lg" href="{{ secondary.url }}">{{ secondary.label }}</a>
+        </div>
+        {%- if hero.plan %}<p class="plan-note">{% icon "stars" %} {{ hero.plan }}</p>{% endif %}
+      </div>
+      <div class="col-lg-6">
+        <div class="page-hero-visual">{{ visual(hero.visual) }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if highlights %}
+<section class="highlights" aria-label="At a glance">
+  <div class="container-xl">
+    <div class="highlights-grid">
+      {%- for h in highlights %}
+      <div class="highlight">
+        <span class="highlight-icon">{% icon h.icon %}</span>
+        <h2 class="h3">{{ h.title }}</h2>
+        <p>{{ h.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- for b in blocks %}
+<section class="section feature-block{% if loop.index is even %} feature-block-flip section-tint{% endif %}">
+  <div class="container-xl">
+    <div class="feature-row">
+      <div class="feature-copy">
+        {%- if b.eyebrow %}<p class="eyebrow">{{ b.eyebrow }}</p>{% endif %}
+        <h2>{{ b.title }}</h2>
+        {%- if b.text %}<p class="feature-text">{{ b.text }}</p>{% endif %}
+        {%- if b.points %}
+        <ul class="check-list">
+          {%- for p in b.points %}<li>{{ p }}</li>{% endfor %}
+        </ul>
+        {%- endif %}
+        {%- if b.plan %}<p class="plan-note">{% icon "stars" %} {{ b.plan }}</p>{% endif %}
+        {%- if b.link %}<a class="link-arrow" href="{{ b.link.url }}">{{ b.link.label }} {% icon "arrow-right" %}</a>{% endif %}
+      </div>
+      <div class="feature-art">{{ visual(b.visual) }}</div>
+    </div>
+  </div>
+</section>
+{%- endfor %}
+
+{{ content | safe }}
+
+{%- if faqs %}
+<section class="section{% if blocks.length is odd %} section-tint{% endif %}">
+  <div class="container-xl">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <p class="eyebrow">Questions</p>
+        <h2>Good to know.</h2>
+        <p class="text-muted-strong">More in the <a href="/help/">Help Center</a>.</p>
+      </div>
+      <div class="col-lg-8">
+        <div class="accordion faq" id="faq">
+          {%- for f in faqs %}
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ loop.index }}" aria-expanded="false" aria-controls="faq-{{ loop.index }}">{{ f.q }}</button>
+            </h3>
+            <div id="faq-{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#faq">
+              <div class="accordion-body">{{ f.a }}</div>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if related %}
+<section class="section related">
+  <div class="container-xl">
+    <h2 class="h3 mb-4">Keep exploring</h2>
+    <div class="related-grid">
+      {%- for url in related %}
+        {%- for item in nav.product.concat(nav.audiences) %}{% if item.url == url %}
+        <a class="mega-item related-item" href="{{ item.url }}">
+          <span class="mega-icon">{% icon item.icon %}</span>
+          <span><span class="mega-title">{{ item.title }}</span><span class="mega-text">{{ item.text }}</span></span>
+        </a>
+        {%- endif %}{% endfor %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{% set ctaPlain = true %}
+{% include "partials/cta.njk" %}
+
+{%- if faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}

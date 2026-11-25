@@ -1,0 +1,65 @@
+---
+layout: layouts/base.njk
+bodyClass: page-help
+---
+{%- set isStaff = audience == "staff" %}
+{%- set cats = helpCategories.staff if isStaff else helpCategories.members %}
+{%- set cat = cats | find("slug", category) %}
+{%- set articles = collections.helpStaff if isStaff else collections.helpMembers %}
+{%- set siblings = articles | inCategory(category) %}
+{%- set home = "/help/staff/" if isStaff else "/help/members/" %}
+
+<div class="help-bar">
+  <div class="container-xl">
+    <nav aria-label="Breadcrumb">
+      <ol class="crumbs">
+        <li><a href="/help/">Help Center</a></li>
+        <li><a href="{{ home }}">{{ "For staff" if isStaff else "For members" }}</a></li>
+        <li><a href="{{ home }}#{{ category }}">{{ cat.title }}</a></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="help-article-wrap">
+  <div class="container-xl">
+    <div class="help-article-grid">
+      <article class="help-article" data-pagefind-body
+               data-pagefind-filter="audience:{{ 'Staff' if isStaff else 'Members' }}"
+               data-pagefind-meta="category:{{ cat.title }}">
+        <p class="eyebrow" data-pagefind-ignore>{{ cat.title }}</p>
+        <h1 data-pagefind-meta="title">{{ title }}</h1>
+        {%- if description %}<p class="help-lead">{{ description }}</p>{% endif %}
+        {%- if app or plan %}
+        <p class="help-tags" data-pagefind-ignore>
+          {%- if app %}<span class="help-tag">{% icon "phone" %} In {{ app }}</span>{% endif %}
+          {%- if plan %}<span class="help-tag help-tag-plan">{% icon "stars" %} {{ plan }}</span>{% endif %}
+        </p>
+        {%- endif %}
+        <div class="prose">
+          {{ content | safe }}
+        </div>
+      </article>
+
+      <aside class="help-side" data-pagefind-ignore>
+        <div class="help-side-card">
+          <p class="help-side-title">{% icon cat.icon %} {{ cat.title }}</p>
+          <ul>
+            {%- for a in siblings %}
+            <li><a href="{{ a.url }}"{% if a.url == page.url %} aria-current="page"{% endif %}>{{ a.data.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+        <div class="help-side-card">
+          <p class="help-side-title">{% icon "book" %} New to a word?</p>
+          <p><a href="/help/words/">Words we use</a> explains dues, guarantors, remittances and more.</p>
+        </div>
+        <div class="help-side-card help-side-contact">
+          <p class="help-side-title">Still stuck?</p>
+          <p>{{ "Your society’s staff can help with your records. For anything else," if not isStaff else "Tell us what you were trying to do and" }} we’ll get back to you.</p>
+          <a class="btn btn-outline-dark btn-sm" href="/contact/?topic=help">Contact us</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

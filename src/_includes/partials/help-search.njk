@@ -1,0 +1,7 @@
+{#- The Help Center's search (Pagefind, built after Eleventy). `searchFilter`
+    narrows it to one audience. -#}
+<div class="help-search" id="help-search" data-audience="{{ searchFilter or '' }}"></div>
+<noscript><p class="help-search-noscript">Search needs JavaScript. Browse the topics below instead.</p></noscript>
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+<script src="/pagefind/pagefind-ui.js" defer></script>
+<script src="/assets/js/help.js" defer></script>

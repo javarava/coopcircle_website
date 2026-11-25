@@ -1,0 +1,14 @@
+<section class="cta-band{% if ctaPlain %} cta-band-plain{% endif %}">
+  <div class="container-xl">
+    <div class="cta-inner">
+      <div>
+        <h2>{{ ctaTitle or "Bring your whole society into one place." }}</h2>
+        <p>{{ ctaText or "Free for up to 10 members, for as long as you like." }}</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-accent btn-lg" href="{{ site.apps.signUp }}">Start free</a>
+        <a class="btn btn-outline-light btn-lg" href="/contact/">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>

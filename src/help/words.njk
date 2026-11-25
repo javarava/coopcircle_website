@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+bodyClass: page-help
+title: Words we use
+description: "What the money words in CoopCircle mean, in plain English: dues, levy, guarantor, remittance, loan period and more."
+---
+<div class="help-bar">
+  <div class="container-xl">
+    <nav aria-label="Breadcrumb">
+      <ol class="crumbs">
+        <li><a href="/help/">Help Center</a></li>
+        <li><a href="/help/words/" aria-current="page">Words we use</a></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="help-article-wrap">
+  <div class="container-xl">
+    <article class="help-article words-page" data-pagefind-body>
+      <p class="eyebrow" data-pagefind-ignore>Help Center</p>
+      <h1 data-pagefind-meta="title">Words we use</h1>
+      <p class="help-lead">What the money words in Coop Staff and Coop Member mean.</p>
+      <dl class="words-list">
+        {%- for w in words %}
+        <div id="{{ w.word | slugify }}">
+          <dt>{{ w.word }}</dt>
+          <dd>{{ w.text }}</dd>
+        </div>
+        {%- endfor %}
+      </dl>
+    </article>
+  </div>
+</section>

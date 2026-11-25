@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+---
+<section class="legal-hero">
+  <div class="container-xl">
+    <p class="eyebrow">Legal</p>
+    <h1 class="display-page">{{ title }}</h1>
+    <p class="legal-updated">Last updated {{ site.company.legalUpdated }}</p>
+  </div>
+</section>
+<section class="legal-body">
+  <div class="container-xl">
+    <div class="legal-grid">
+      <nav class="legal-nav" aria-label="Legal pages">
+        {%- for item in nav.legal %}
+        <a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- endfor %}
+      </nav>
+      <div class="prose legal-prose">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,299 @@
+{#- Product illustrations, drawn in HTML with sample figures. Decorative:
+    the text beside each says the same thing. {{ visual("name") }} -#}
+{%- macro visual(name) -%}
+<div class="feature-visual" aria-hidden="true">
+{%- if name == "savings-account" %}
+  <div class="ui-panel">
+    <p class="ui-label">Main Savings · 4% a year</p>
+    <p class="ui-figure-sm">₦842,300.00</p>
+    <p class="ui-meta">Next interest posting 31 Dec</p>
+    <div class="ui-progress mt-3"><i style="--w: 64%"></i></div>
+    <p class="ui-meta">School fees target · ₦320,000 of ₦500,000</p>
+    <div class="ui-row mt-2"><span class="ui-avatar">{% icon "arrow-down-left" %}</span><span><strong>Deposit</strong> · cash at Ikeja</span><b>₦20,000</b></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "percent" %}</span><span><strong>Interest</strong> · Q3</span><b>₦8,140</b></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "arrow-up-right" %}</span><span><strong>Withdrawal</strong> · approved</span><b>−₦50,000</b></div>
+  </div>
+{%- elif name == "dues" %}
+  <div class="ui-panel">
+    <p class="ui-label">Monthly dues · November</p>
+    <div class="ui-progress"><i style="--w: 78%"></i></div>
+    <p class="ui-meta">142 of 182 members paid · ₦1,420,000 collected</p>
+    <div class="ui-row mt-2"><span class="ui-avatar">BA</span><span><strong>Bisi A.</strong> · 2 months</span><span class="ui-tag ui-tag-red">Overdue</span></div>
+    <div class="ui-row"><span class="ui-avatar">CE</span><span><strong>Chidi E.</strong> · building levy</span><span class="ui-tag ui-tag-amber">Part paid</span></div>
+    <div class="ui-row"><span class="ui-avatar">ZM</span><span><strong>Zainab M.</strong> · welfare fund</span><span class="ui-tag ui-tag-green">Paid</span></div>
+  </div>
+{%- elif name == "record-payment" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Record payment · Amaka O.</p>
+    <div class="ui-field"><span>What for</span><b>Savings deposit</b></div>
+    <div class="ui-field"><span>Amount</span><b>₦20,000.00</b></div>
+    <div class="ui-field"><span>How</span><b>Bank transfer</b></div>
+    <div class="ui-field"><span>Receipt</span><b>{% icon "paperclip" %} teller.jpg</b></div>
+    <span class="ui-button ui-button-block">Record payment</span>
+    <p class="ui-meta text-center mt-2">Waits for an approver before it counts</p>
+  </div>
+{%- elif name == "loan-steps" %}
+  <div class="ui-panel">
+    <p class="ui-label">Loan application · ₦500,000 over 12 months</p>
+    <ol class="ui-steps">
+      <li class="done">Applied by the member</li>
+      <li class="done">Guarantors signed (2 of 2)</li>
+      <li class="now">Loan committee review</li>
+      <li>President’s approval</li>
+      <li>Paid to member</li>
+    </ol>
+  </div>
+{%- elif name == "guarantor" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Guarantor request</p>
+    <p class="mb-2"><strong>Femi O.</strong> asks you to guarantee <strong>₦150,000</strong> of a ₦500,000 loan.</p>
+    <p class="ui-meta">If Femi doesn’t repay, your society can recover your share from you.</p>
+    <div class="ui-signature">Ngozi Adeyemi</div>
+    <div class="d-flex gap-2"><span class="ui-button flex-fill">Review and sign</span><span class="ui-button ui-button-ghost flex-fill">Decline</span></div>
+  </div>
+{%- elif name == "credit-score" %}
+  <div class="ui-panel ui-panel-narrow text-center">
+    <p class="ui-label">Coop Credit Score</p>
+    <div class="ui-gauge" style="--v: 0.72"><span>712</span><small>Good</small></div>
+    <div class="ui-line text-start"><span>Repays on time</span><b>12 of 12</b></div>
+    <div class="ui-line text-start"><span>Saves every month</span><b>Yes</b></div>
+    <div class="ui-line text-start"><span>Dues up to date</span><b>Yes</b></div>
+  </div>
+{%- elif name == "pay-sheet" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Pay into Main Savings</p>
+    <div class="ui-chips"><span class="active">Online</span><span>Bank transfer</span></div>
+    <p class="ui-figure-sm mt-2">₦10,000.00</p>
+    <div class="ui-line"><span>Convenience fee</span><b>₦304.57</b></div>
+    <div class="ui-line ui-line-total"><span>You pay</span><b>₦10,304.57</b></div>
+    <span class="ui-button ui-button-block">Pay ₦10,304.57</span>
+    <p class="ui-meta text-center mt-2">{% icon "lock" %} Secured by Paystack</p>
+  </div>
+{%- elif name == "transfer" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Send to your society’s account</p>
+    <div class="ui-account">
+      <span>Guaranty Trust Bank</span>
+      <b>0123456789 {% icon "copy" %}</b>
+      <span>UNITY TEACHERS CTCS</span>
+    </div>
+    <p class="ui-label mt-3">Then tell us you’ve sent it</p>
+    <div class="ui-field"><span>Transfer reference</span><b>TRF-88213</b></div>
+    <div class="ui-field"><span>Screenshot</span><b>{% icon "image" %} receipt.png</b></div>
+    <span class="ui-button ui-button-block">Send for checking</span>
+  </div>
+{%- elif name == "approvals" %}
+  <div class="ui-panel">
+    <p class="ui-label">Payment approvals · 3 waiting</p>
+    <div class="ui-row"><span class="ui-avatar">AO</span><span><strong>Amaka O.</strong> · savings · transfer<br><span class="ui-meta">Recorded by Kunle at Ikeja</span></span><em class="ui-pill">Approve</em></div>
+    <div class="ui-row"><span class="ui-avatar">TB</span><span><strong>Tunde B.</strong> · loan repayment<br><span class="ui-meta">Claimed by the member</span></span><em class="ui-pill">Approve</em></div>
+    <div class="ui-row"><span class="ui-avatar">FI</span><span><strong>Fatima I.</strong> · dues · cash<br><span class="ui-meta">Recorded by you</span></span><span class="ui-tag">Someone else approves</span></div>
+  </div>
+{%- elif name == "branches" %}
+  <div class="ui-panel">
+    <p class="ui-label">Funds by branch · November</p>
+    <div class="ui-table">
+      <div class="ui-tr ui-th"><span>Branch</span><span>Collected</span><span>To hand in</span></div>
+      <div class="ui-tr"><span>Ikeja</span><span>₦1.84m</span><span class="text-success-ui">₦0</span></div>
+      <div class="ui-tr"><span>Yaba</span><span>₦1.21m</span><span class="text-warn-ui">₦86,000</span></div>
+      <div class="ui-tr"><span>Ota</span><span>₦640k</span><span class="text-success-ui">₦0</span></div>
+      <div class="ui-tr"><span>Abeokuta</span><span>₦975k</span><span class="text-warn-ui">₦42,500</span></div>
+    </div>
+  </div>
+{%- elif name == "remittance" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Cash to hand in · Yaba</p>
+    <p class="ui-figure-sm">₦86,000.00</p>
+    <div class="ui-line"><span>Savings</span><b>₦52,000</b></div>
+    <div class="ui-line"><span>Dues and levies</span><b>₦24,000</b></div>
+    <div class="ui-line"><span>Loan repayments</span><b>₦10,000</b></div>
+    <span class="ui-button ui-button-block">Record remittance</span>
+    <p class="ui-meta text-center mt-2">A leader confirms it when it arrives</p>
+  </div>
+{%- elif name == "report-chart" %}
+  <div class="ui-panel">
+    <p class="ui-label">Money in and out · last 6 months</p>
+    <div class="ui-chart">
+      <i style="--h: 48%"></i><i style="--h: 62%"></i><i style="--h: 55%"></i>
+      <i style="--h: 70%"></i><i style="--h: 66%"></i><i style="--h: 84%"></i>
+    </div>
+    <div class="ui-chart-labels"><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+  </div>
+{%- elif name == "statement" %}
+  <div class="ui-panel ui-panel-narrow ui-paper">
+    <div class="d-flex justify-content-between align-items-start mb-2">
+      <div><p class="ui-label mb-0">Member statement</p><p class="ui-meta">1 Jan – 30 Nov 2026</p></div>
+      <span class="ui-tag">PDF</span>
+    </div>
+    <p class="mb-1"><strong>Ngozi Adeyemi</strong> · UTC/0142</p>
+    <div class="ui-line"><span>Savings</span><b>₦1,240,500</b></div>
+    <div class="ui-line"><span>Shares paid</span><b>₦200,000</b></div>
+    <div class="ui-line"><span>Dues and funds</span><b>₦96,000</b></div>
+    <div class="ui-line"><span>Loan owed</span><b>₦183,400</b></div>
+  </div>
+{%- elif name == "shares" %}
+  <div class="ui-panel ui-panel-narrow ui-cert">
+    <p class="ui-label">Share certificate No. 0142</p>
+    <p class="ui-cert-title">Unity Teachers’ CTCS</p>
+    <p class="mb-2">This is to certify that <strong>Ngozi Adeyemi</strong> holds</p>
+    <p class="ui-figure-sm">200 shares</p>
+    <p class="ui-meta">of ₦1,000 each, fully paid</p>
+  </div>
+{%- elif name == "dividends" %}
+  <div class="ui-panel">
+    <p class="ui-label">Dividend for 2026 · 8% of paid-up shares</p>
+    <div class="ui-line"><span>Members paid</span><b>176</b></div>
+    <div class="ui-line"><span>Total</span><b>₦808,000</b></div>
+    <div class="ui-row"><span class="ui-avatar">NA</span><span><strong>Ngozi A.</strong> · into savings</span><b>₦16,000</b></div>
+    <div class="ui-row"><span class="ui-avatar">KB</span><span><strong>Kunle B.</strong> · into savings</span><b>₦8,000</b></div>
+    <span class="ui-button ui-button-block">Pay dividends</span>
+  </div>
+{%- elif name == "empowerment" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Start-up Grants · up to ₦40,000</p>
+    <div class="ui-rule ok">{% icon "check-circle-fill" %} A member for at least 6 months</div>
+    <div class="ui-rule ok">{% icon "check-circle-fill" %} Up to ₦100,000 saved</div>
+    <div class="ui-rule ok">{% icon "check-circle-fill" %} Up to 20 members · 7 places left</div>
+    <div class="ui-field mt-2"><span>You’re asking for</span><b>₦30,000</b></div>
+    <div class="ui-field"><span>Paid</span><b>Into my savings</b></div>
+    <span class="ui-button ui-button-block">Send application</span>
+  </div>
+{%- elif name == "insurance" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Group life cover</p>
+    <p class="mb-1"><strong>₦1,000,000</strong> cover</p>
+    <p class="ui-meta mb-2">Insured by Example Assurance through your society</p>
+    <div class="ui-line"><span>Premium</span><b>₦1,500 a month</b></div>
+    <div class="ui-line"><span>Paid by</span><b>Your dues</b></div>
+    <div class="ui-line"><span>Status</span><b><span class="ui-tag ui-tag-green">Active</span></b></div>
+  </div>
+{%- elif name == "notice" %}
+  <div class="ui-panel ui-panel-narrow">
+    <div class="d-flex gap-2 align-items-center mb-2"><span class="ui-avatar">{% icon "megaphone" %}</span><span><strong>Annual general meeting</strong><br><span class="ui-meta">To all members · pinned</span></span></div>
+    <p class="mb-2">Our AGM is on Saturday 13 December at 10am, at the Ikeja secretariat. The agenda is attached.</p>
+    <div class="ui-attach">{% icon "file-earmark-pdf" %} AGM agenda 2026.pdf</div>
+    <p class="ui-meta mt-2">{% icon "eye" %} Read by 131 members</p>
+  </div>
+{%- elif name == "pin" %}
+  <div class="ui-panel ui-panel-narrow text-center">
+    <p class="ui-label">Enter your PIN to approve</p>
+    <p class="mb-3">₦250,000 loan to Ngozi A.</p>
+    <div class="ui-pin"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <p class="ui-meta mt-3">Locks after 5 wrong tries</p>
+  </div>
+{%- elif name == "audit" %}
+  <div class="ui-panel">
+    <p class="ui-label">Change history</p>
+    <div class="ui-row"><span class="ui-avatar">{% icon "pencil" %}</span><span><strong>Loan type changed</strong> · interest 2% → 2.5%<br><span class="ui-meta">Financial secretary · today 09:14</span></span></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "arrow-counterclockwise" %}</span><span><strong>Payment cancelled</strong> · ₦20,000, duplicate<br><span class="ui-meta">Treasurer · yesterday 16:02</span></span></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "bank2" %}</span><span><strong>Society account added</strong> · used from Thursday<br><span class="ui-meta">President · Mon 11:40</span></span></div>
+  </div>
+{%- elif name == "member-phone" %}
+  <div class="ui-phone ui-phone-static">
+    <div class="ui-phone-notch"></div>
+    <p class="ui-phone-org">Unity Teachers’ CTCS</p>
+    <div class="ui-card ui-card-brand">
+      <p class="ui-label">Savings</p>
+      <p class="ui-figure-sm">₦1,240,500</p>
+      <p class="ui-meta">+₦25,000 this month</p>
+    </div>
+    <div class="ui-card">
+      <p class="ui-label">Loan · next instalment</p>
+      <p class="ui-figure-sm">₦41,600</p>
+      <p class="ui-meta">Due 28 Nov</p>
+    </div>
+    <div class="ui-card">
+      <p class="ui-label">Dues</p>
+      <p class="ui-meta">All paid up {% icon "check-circle-fill" %}</p>
+    </div>
+    <span class="ui-button">Pay online</span>
+  </div>
+{%- elif name == "leadership-home" %}
+  <div class="ui-panel">
+    <p class="ui-label">Society funds</p>
+    <p class="ui-figure">₦48,250,000 <span class="ui-up">{% icon "arrow-up-short" %}4.2%</span></p>
+    <div class="ui-line"><span>Lent out to members</span><b>₦21.4m</b></div>
+    <div class="ui-line"><span>Available to lend</span><b>₦18.6m</b></div>
+    <div class="ui-line"><span>Overdue 30+ days</span><b class="text-warn-ui">₦640,000</b></div>
+    <p class="ui-label mt-3">Waiting for your approval</p>
+    <div class="ui-row"><span class="ui-dot"></span><span><strong>Loan</strong> · Ngozi A. · ₦250,000</span><em class="ui-pill">Approve</em></div>
+    <div class="ui-row"><span class="ui-dot ui-dot-2"></span><span><strong>Withdrawal</strong> · Tunde B. · ₦40,000</span><em class="ui-pill">Approve</em></div>
+  </div>
+{%- elif name == "import" %}
+  <div class="ui-panel">
+    <p class="ui-label">Upload · members_2026.xlsx</p>
+    <div class="ui-line"><span>Members</span><b>182 ready</b></div>
+    <div class="ui-line"><span>Opening savings</span><b>₦29,940,000</b></div>
+    <div class="ui-line"><span>Loans still owed</span><b>34</b></div>
+    <div class="ui-line"><span>Rows to fix</span><b class="text-warn-ui">3</b></div>
+    <span class="ui-button ui-button-block">Send for confirmation</span>
+    <p class="ui-meta text-center mt-2">Someone else confirms it · undo within 7 days</p>
+  </div>
+{%- elif name == "savings-products" %}
+  <div class="ui-panel">
+    <p class="ui-label">Savings types</p>
+    <div class="ui-row"><span class="ui-avatar">{% icon "piggy-bank" %}</span><span><strong>Main Savings</strong><br><span class="ui-meta">4% a year · 182 accounts</span></span><b>₦29.9m</b></div>
+    <div class="ui-row"><span class="ui-avatar ui-avatar-green">{% icon "bullseye" %}</span><span><strong>School Fees Target</strong><br><span class="ui-meta">Target · locked until Sept</span></span><b>₦6.2m</b></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "calendar-week" %}</span><span><strong>Daily Contribution</strong><br><span class="ui-meta">Regular · daily</span></span><b>₦2.8m</b></div>
+    <div class="ui-row"><span class="ui-avatar ui-avatar-green">{% icon "gift" %}</span><span><strong>Christmas Savings</strong><br><span class="ui-meta">Target · paid 15 Dec</span></span><b>₦1.4m</b></div>
+  </div>
+{%- elif name == "loan-quote" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Business Loan · your quote</p>
+    <p class="ui-figure-sm">₦500,000.00</p>
+    <p class="ui-meta mb-2">You can borrow up to ₦750,000</p>
+    <div class="ui-line"><span>Repay over</span><b>12 months</b></div>
+    <div class="ui-line"><span>Interest</span><b>₦60,000</b></div>
+    <div class="ui-line"><span>Each month</span><b>₦46,667</b></div>
+    <div class="ui-line ui-line-total"><span>Total to repay</span><b>₦560,000</b></div>
+    <span class="ui-button ui-button-block">Continue</span>
+  </div>
+{%- elif name == "payment-received" %}
+  <div class="ui-panel ui-panel-narrow text-center">
+    <span class="ui-success">{% icon "check-lg" %}</span>
+    <p class="ui-label mt-3">Payment received</p>
+    <p class="ui-figure-sm">₦10,000.00</p>
+    <p class="ui-meta mb-2">Credited to Main Savings</p>
+    <div class="ui-line text-start"><span>Paid</span><b>Online · today 10:42</b></div>
+    <div class="ui-line text-start"><span>New balance</span><b>₦1,250,500</b></div>
+    <div class="ui-line text-start"><span>Reference</span><b>CMP-8F2K91</b></div>
+  </div>
+{%- elif name == "share-holding" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Your shares</p>
+    <p class="ui-figure-sm">150 of 200 paid</p>
+    <div class="ui-progress"><i style="--w: 75%"></i></div>
+    <div class="ui-line"><span>Share value</span><b>₦1,000 each</b></div>
+    <div class="ui-line"><span>Paid so far</span><b>₦150,000</b></div>
+    <div class="ui-line"><span>Still to pay</span><b>₦50,000</b></div>
+    <span class="ui-button ui-button-block">Pay online</span>
+  </div>
+{%- elif name == "programme-budget" %}
+  <div class="ui-panel">
+    <p class="ui-label">Start-up Grants · open until 15 Dec</p>
+    <div class="ui-progress"><i style="--w: 46%"></i></div>
+    <p class="ui-meta">₦460,000 of ₦1,000,000 budget approved</p>
+    <div class="ui-row mt-2"><span class="ui-avatar">FI</span><span><strong>Fatima I.</strong> · ₦40,000<br><span class="ui-meta">Applied in the app · into savings</span></span><em class="ui-pill">Decide</em></div>
+    <div class="ui-row"><span class="ui-avatar">KB</span><span><strong>Kunle B.</strong> · ₦25,000<br><span class="ui-meta">Approved · by bank transfer</span></span><span class="ui-tag ui-tag-amber">To pay</span></div>
+    <div class="ui-row"><span class="ui-avatar">AO</span><span><strong>Amaka O.</strong> · ₦30,000<br><span class="ui-meta">Paid 12 Nov</span></span><span class="ui-tag ui-tag-green">Paid</span></div>
+  </div>
+{%- elif name == "notice-list" %}
+  <div class="ui-panel">
+    <p class="ui-label">Notice board</p>
+    <div class="ui-row"><span class="ui-avatar">{% icon "pin-angle-fill" %}</span><span><strong>Annual general meeting</strong><br><span class="ui-meta">Everyone · pinned · read by 131</span></span></div>
+    <div class="ui-row"><span class="ui-avatar ui-avatar-green">{% icon "calendar-event" %}</span><span><strong>December dues are due on the 5th</strong><br><span class="ui-meta">Members · scheduled for 1 Dec</span></span></div>
+    <div class="ui-row"><span class="ui-avatar">{% icon "people" %}</span><span><strong>Staff training at Yaba</strong><br><span class="ui-meta">Staff · Yaba branch</span></span></div>
+  </div>
+{%- elif name == "account-change" %}
+  <div class="ui-panel ui-panel-narrow">
+    <p class="ui-label">Society account change</p>
+    <p class="mb-1"><strong>Guaranty Trust Bank · 0123456789</strong></p>
+    <p class="ui-meta mb-2">UNITY TEACHERS CTCS · checked with the bank</p>
+    <div class="ui-line"><span>Added by</span><b>The president</b></div>
+    <div class="ui-line"><span>Payments go to it from</span><b>Thu 27 Nov, 10:15</b></div>
+    <span class="ui-button ui-button-ghost ui-button-block">Stop this change</span>
+    <p class="ui-meta text-center mt-2">Every leader was told</p>
+  </div>
+{%- endif %}
+</div>
+{%- endmacro -%}

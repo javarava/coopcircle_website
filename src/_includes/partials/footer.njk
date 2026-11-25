@@ -1,0 +1,58 @@
+<footer class="site-footer">
+  <div class="container-xl">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/img/brand/coopcircle-logo-white.svg" alt="CoopCircle" width="170" height="38">
+        <p>Software for cooperative societies: savings, dues, loans and payments for every branch, and an app for every member.</p>
+        <div class="footer-apps">
+          <p class="footer-heading">Get the apps</p>
+          <div class="store-row">
+            <a class="store-badge" href="{{ site.stores.member.googlePlay }}" aria-label="Coop Member on Google Play (coming soon)">
+              {% icon "google-play" %}<span><small>Coming to</small>Google Play</span>
+            </a>
+            <a class="store-badge" href="{{ site.stores.member.appStore }}" aria-label="Coop Member on the App Store (coming soon)">
+              {% icon "apple" %}<span><small>Coming to the</small>App Store</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="footer-cols" aria-label="Footer">
+        <div>
+          <p class="footer-heading">Product</p>
+          <ul>
+            {%- for item in nav.product %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Who it’s for</p>
+          <ul>
+            {%- for item in nav.audiences %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+          </ul>
+          <p class="footer-heading mt-4">Sign in</p>
+          <ul>
+            <li><a href="{{ site.apps.staffSignIn }}">Coop Staff</a></li>
+            <li><a href="{{ site.apps.memberSignIn }}">Coop Member</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Company</p>
+          <ul>
+            {%- for item in nav.company %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+          </ul>
+          <p class="footer-heading mt-4">Help</p>
+          <ul>
+            {%- for item in nav.help %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ "" | year }} CoopCircle. Built for cooperative societies in Nigeria.</p>
+      <ul>
+        {%- for item in nav.legal %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</footer>

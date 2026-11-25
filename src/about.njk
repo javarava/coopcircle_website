@@ -1,0 +1,97 @@
+---
+layout: layouts/base.njk
+title: About us
+description: "CoopCircle is software for cooperative societies: one place for savings, dues, loans and payments, and an app for every member."
+---
+<section class="page-hero">
+  <div class="container-xl">
+    <div class="section-head">
+      <p class="eyebrow">About CoopCircle</p>
+      <h1 class="display-page">Cooperatives deserve better than record books and WhatsApp groups.</h1>
+      <p class="lead">Cooperative societies hold the savings of teachers, traders, farmers and workers across Nigeria. CoopCircle helps them look after that money as carefully as their members expect.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container-xl">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <p class="eyebrow">Why we built it</p>
+        <h2>Running a society, with less paperwork.</h2>
+      </div>
+      <div class="col-lg-7 about-copy">
+        <p>In most societies, a few volunteers do all the work. They collect dues at the end of the month, write receipts, follow up guarantors, check the notebooks from every branch, and answer members who want to know their balance.</p>
+        <p>It works because those people care. But it is slow and hard to check. When someone leaves, what they knew leaves with them.</p>
+        <p>CoopCircle puts the whole society in one place. Branch staff record payments once. Leaders approve with their PIN and see every branch. Members see their own accounts on their phones, and pay in without travelling to the office. The records stay with the society, whoever is in office.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-xl">
+    <div class="section-head">
+      <p class="eyebrow">What we believe</p>
+      <h2>The principles behind every screen.</h2>
+    </div>
+    <div class="principles">
+      <div>
+        <span class="highlight-icon">{% icon "people" %}</span>
+        <h3>Members come first</h3>
+        <p>It is their money. Every member should be able to see it, and be told when it changes.</p>
+      </div>
+      <div>
+        <span class="highlight-icon">{% icon "shield-check" %}</span>
+        <h3>Trust, and check</h3>
+        <p>The person who takes the money isn’t the person who approves it. Every change is recorded.</p>
+      </div>
+      <div>
+        <span class="highlight-icon">{% icon "bank" %}</span>
+        <h3>Your money stays yours</h3>
+        <p>Payments go straight into the society’s own bank account. We keep the records, never the money.</p>
+      </div>
+      <div>
+        <span class="highlight-icon">{% icon "cloud-arrow-down" %}</span>
+        <h3>Your data stays yours</h3>
+        <p>Every society can download all of its data, and every member their own, on every plan.</p>
+      </div>
+      <div>
+        <span class="highlight-icon">{% icon "phone" %}</span>
+        <h3>Made for everyday conditions</h3>
+        <p>It works in any web browser, on simple phones and weak networks. Staff can record payments for members who prefer the branch.</p>
+      </div>
+      <div>
+        <span class="highlight-icon">{% icon "chat-square-text" %}</span>
+        <h3>Plain words</h3>
+        <p>No hard words. Every screen should make sense to a branch secretary, and to a member on their first day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container-xl">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <a class="audience-card" href="/for/leadership/">
+          <img src="/assets/img/brand/coopstaff-mark.svg" alt="" width="44" height="53">
+          <h3>Coop Staff</h3>
+          <p>For presidents, executives and branch staff: members, savings, dues, loans, cash, approvals and reports, on the web and phones.</p>
+          <span class="link-arrow">See what staff can do {% icon "arrow-right" %}</span>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a class="audience-card" href="/for/members/">
+          <img src="/assets/img/brand/coopmember-mark.svg" alt="" width="44" height="53">
+          <h3>Coop Member</h3>
+          <p>For members: balances, statements, paying in, loans, guarantees and programmes, in their society’s own colours.</p>
+          <span class="link-arrow">See what members get {% icon "arrow-right" %}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set ctaPlain = true %}
+{% include "partials/cta.njk" %}

@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+title: Help Center
+description: "Help for CoopCircle: guides for society leaders and staff using Coop Staff, and for members using Coop Member."
+bodyClass: page-help
+---
+<section class="help-hero">
+  <div class="container-xl">
+    <p class="eyebrow">Help Center</p>
+    <h1 class="display-page">How can we help?</h1>
+    {% include "partials/help-search.njk" %}
+  </div>
+</section>
+
+<section class="section pt-5">
+  <div class="container-xl">
+    <div class="help-doors">
+      <a class="help-door" href="/help/staff/">
+        <img src="/assets/img/brand/coopstaff-mark.svg" alt="" width="48" height="58">
+        <span>
+          <strong>I run or work for a society</strong>
+          <span>Help with Coop Staff: setting up, members, payments, loans, reports and billing.</span>
+        </span>
+        {% icon "arrow-right" %}
+      </a>
+      <a class="help-door" href="/help/members/">
+        <img src="/assets/img/brand/coopmember-mark.svg" alt="" width="48" height="58">
+        <span>
+          <strong>I’m a member</strong>
+          <span>Help with Coop Member: joining, your PIN, paying in, loans and your account.</span>
+        </span>
+        {% icon "arrow-right" %}
+      </a>
+    </div>
+
+    <div class="row g-5 mt-2">
+      <div class="col-lg-6">
+        <h2 class="h3 mb-3">Popular for staff</h2>
+        <ul class="help-list">
+          {%- for a in collections.helpStaff | popular %}<li><a href="{{ a.url }}">{{ a.data.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="h3 mb-3">Popular for members</h2>
+        <ul class="help-list">
+          {%- for a in collections.helpMembers | popular %}<li><a href="{{ a.url }}">{{ a.data.title }}</a></li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint">
+  <div class="container-xl">
+    <div class="help-contact">
+      <div>
+        <h2 class="h3">Can’t find what you need?</h2>
+        <p>Members: your society’s staff can help with your balances and requests. For anything about CoopCircle itself, write to us.</p>
+        <p>Not sure what a word means? See <a href="/help/words/">Words we use</a>.</p>
+      </div>
+      <a class="btn btn-primary" href="/contact/?topic=help">Contact us</a>
+    </div>
+  </div>
+</section>

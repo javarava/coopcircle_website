@@ -1,0 +1,26 @@
+{
+  "name": "coopcircle-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "coopcirclehq.com — CoopCircle's website and Help Center",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve --quiet",
+    "build": "eleventy && pagefind --site _site --output-subdir pagefind",
+    "preview": "eleventy && pagefind --site _site --output-subdir pagefind --serve",
+    "clean": "rm -rf _site",
+    "test": "node tools/contact.test.mjs && node tools/words.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/outfit": "^5.2.8",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "pagefind": "^1.4.0",
+    "sass": "^1.93.2"
+  }
+}

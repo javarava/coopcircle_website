@@ -1,0 +1,412 @@
+---
+layout: layouts/base.njk
+bodyClass: page-home
+faqs:
+  - q: "Do all our members need smartphones?"
+    a: "No. Branch staff record cash, transfers and POS payments for every member in Coop Staff. Members who have a smartphone can also use Coop Member to check their balances, apply for loans and pay in. It works on Android, iPhone and in any web browser."
+  - q: "When members pay online, where does the money go?"
+    a: "Straight into your society’s own bank account, which we confirm first. Payments go through Paystack, a Nigerian payment company. CoopCircle never holds your money. Members see the small payment fee before they pay."
+  - q: "Can we bring in our existing records?"
+    a: "Yes. On Growth and above, you can upload your members and their balances from an Excel file. Another leader checks and confirms the upload before it counts. You can undo an upload for 7 days."
+  - q: "What happens to our data if we stop using CoopCircle?"
+    a: "Your data belongs to you. On every plan, even Free, your leaders can download all of your society’s data. Every member can also download their own."
+  - q: "Does it work for a society with branches?"
+    a: "Yes. Each branch records its own payments and hands in the cash it collects. Leaders can see all branches together, or one branch at a time. The Professional plan allows up to 5 branches. Enterprise has no limit."
+---
+{#- ── Hero ──────────────────────────────────────────────────────────── -#}
+<section class="hero">
+  <div class="container-xl">
+    <div class="row align-items-center g-5">
+      <div class="col-xl-6">
+        <p class="eyebrow">Software for cooperative societies</p>
+        <h1 class="display-hero">Every naira, every member, every branch. <span class="text-accent">Recorded and safe.</span></h1>
+        <p class="lead">CoopCircle keeps your society’s savings, dues, loans and payments in one place. Your leaders approve what matters, and your members can see their own accounts on their phone.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="{{ site.apps.signUp }}">Start free</a>
+          <a class="btn btn-outline-dark btn-lg" href="/contact/">Book a demo</a>
+        </div>
+        <p class="hero-note">{% icon "check2" %} Free for up to 10 members <span aria-hidden="true">·</span> {% icon "check2" %} No card needed</p>
+      </div>
+
+      <div class="col-xl-6 hero-visual-col">
+        {#- An illustration of the two apps, with sample figures. -#}
+        <div class="hero-visual" role="img" aria-label="Coop Staff showing the society’s funds and two items waiting for approval, beside Coop Member on a phone showing a member’s savings">
+          <div class="ui-window">
+            <div class="ui-window-bar"><span></span><span></span><span></span><em>staff.coopcirclehq.com</em></div>
+            <div class="ui-window-body">
+              <p class="ui-label">Society funds</p>
+              <p class="ui-figure">₦48,250,000 <span class="ui-up">{% icon "arrow-up-short" %}4.2%</span></p>
+              <div class="ui-bars">
+                <div><span>Savings</span><i style="--w: 62%"></i><b>₦29.9m</b></div>
+                <div><span>Share capital</span><i style="--w: 21%"></i><b>₦10.1m</b></div>
+                <div><span>Dues and funds</span><i style="--w: 12%"></i><b>₦5.8m</b></div>
+                <div><span>Empowerment</span><i style="--w: 5%"></i><b>₦2.4m</b></div>
+              </div>
+              <p class="ui-label mt-3">Waiting for your approval</p>
+              <div class="ui-row"><span class="ui-dot"></span><span><strong>Loan</strong> · Ngozi A. · ₦250,000</span><em class="ui-pill">Approve</em></div>
+              <div class="ui-row"><span class="ui-dot ui-dot-2"></span><span><strong>Withdrawal</strong> · Tunde B. · ₦40,000</span><em class="ui-pill">Approve</em></div>
+            </div>
+          </div>
+          <div class="ui-phone">
+            <div class="ui-phone-notch"></div>
+            <p class="ui-phone-org">Unity Teachers’ CTCS</p>
+            <div class="ui-card ui-card-brand">
+              <p class="ui-label">Savings</p>
+              <p class="ui-figure-sm">₦1,240,500</p>
+              <p class="ui-meta">+₦25,000 this month</p>
+            </div>
+            <div class="ui-card">
+              <p class="ui-label">Loan · next instalment</p>
+              <p class="ui-figure-sm">₦41,600</p>
+              <p class="ui-meta">Due 28 Nov</p>
+            </div>
+            <span class="ui-button">Pay online</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- ── Proof: what's true of the product today ─────────────────────── -#}
+<section class="facts" aria-label="At a glance">
+  <div class="container-xl">
+    <ul class="facts-list">
+      <li>{% icon "browser-chrome" %} Works in any browser and on phones</li>
+      <li>{% icon "shield-lock" %} A PIN for every payment and approval</li>
+      <li>{% icon "credit-card-2-front" %} Online payments through Paystack</li>
+      <li>{% icon "journal-check" %} Every change recorded</li>
+      <li>{% icon "cloud-arrow-down" %} Download all your data, any time</li>
+    </ul>
+  </div>
+</section>
+
+{#- ── Product tour ──────────────────────────────────────────────────── -#}
+<section class="section tour" id="tour">
+  <div class="container-xl">
+    <div class="section-head">
+      <p class="eyebrow">One place for the whole society</p>
+      <h2>Everything your society now keeps in record books, WhatsApp groups and Excel.</h2>
+    </div>
+
+    <div class="tour-tabs" role="tablist" aria-label="What CoopCircle does">
+      <button class="tour-tab active" id="tab-savings" data-bs-toggle="pill" data-bs-target="#pane-savings" type="button" role="tab" aria-controls="pane-savings" aria-selected="true">{% icon "piggy-bank" %} Savings and dues</button>
+      <button class="tour-tab" id="tab-loans" data-bs-toggle="pill" data-bs-target="#pane-loans" type="button" role="tab" aria-controls="pane-loans" aria-selected="false">{% icon "cash-coin" %} Loans</button>
+      <button class="tour-tab" id="tab-payments" data-bs-toggle="pill" data-bs-target="#pane-payments" type="button" role="tab" aria-controls="pane-payments" aria-selected="false">{% icon "phone" %} Payments</button>
+      <button class="tour-tab" id="tab-reports" data-bs-toggle="pill" data-bs-target="#pane-reports" type="button" role="tab" aria-controls="pane-reports" aria-selected="false">{% icon "file-earmark-bar-graph" %} Reports</button>
+      <button class="tour-tab" id="tab-app" data-bs-toggle="pill" data-bs-target="#pane-app" type="button" role="tab" aria-controls="pane-app" aria-selected="false">{% icon "person-badge" %} Member app</button>
+    </div>
+
+    <div class="tab-content tour-panes">
+      <div class="tab-pane fade show active" id="pane-savings" role="tabpanel" aria-labelledby="tab-savings" tabindex="0">
+        <div class="tour-pane">
+          <div class="tour-copy">
+            <h3>Record every contribution once. The right people can see it.</h3>
+            <ul class="check-list">
+              <li>Savings with interest, target savings and regular savings plans.</li>
+              <li>Dues, levies and funds charged on time. You can see who hasn’t paid.</li>
+              <li>Branch staff record cash, transfer and POS payments, with the receipt.</li>
+              <li>If your society wants, a leader checks each payment before it counts.</li>
+            </ul>
+            <a class="link-arrow" href="/product/savings/">More on savings and dues {% icon "arrow-right" %}</a>
+          </div>
+          <div class="tour-visual" aria-hidden="true">
+            <div class="ui-panel">
+              <p class="ui-label">Monthly dues · November</p>
+              <div class="ui-progress"><i style="--w: 78%"></i></div>
+              <p class="ui-meta">142 of 182 members paid · ₦1,420,000 collected</p>
+              <div class="ui-row"><span class="ui-avatar">AO</span><span><strong>Amaka O.</strong> · Savings deposit</span><b>₦20,000</b></div>
+              <div class="ui-row"><span class="ui-avatar">KB</span><span><strong>Kunle B.</strong> · Monthly dues</span><b>₦10,000</b></div>
+              <div class="ui-row"><span class="ui-avatar">FI</span><span><strong>Fatima I.</strong> · Building levy</span><b>₦5,000</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pane-loans" role="tabpanel" aria-labelledby="tab-loans" tabindex="0">
+        <div class="tour-pane">
+          <div class="tour-copy">
+            <h3>From the loan form to the last repayment, with no paper to collect.</h3>
+            <ul class="check-list">
+              <li>Members apply in the app, or staff apply for them. Documents go with the application.</li>
+              <li>Guarantors read what they are agreeing to, and agree on their phone.</li>
+              <li>Your own approval steps and loan limits. The member sees their repayment dates.</li>
+              <li>A credit score for each member, based on how they have saved and repaid (Growth and up).</li>
+            </ul>
+            <a class="link-arrow" href="/product/loans/">More on loans {% icon "arrow-right" %}</a>
+          </div>
+          <div class="tour-visual" aria-hidden="true">
+            <div class="ui-panel">
+              <p class="ui-label">Loan application · ₦500,000 over 12 months</p>
+              <ol class="ui-steps">
+                <li class="done">Applied by the member</li>
+                <li class="done">Guarantors signed (2 of 2)</li>
+                <li class="now">Loan committee review</li>
+                <li>President’s approval</li>
+                <li>Paid to member</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pane-payments" role="tabpanel" aria-labelledby="tab-payments" tabindex="0">
+        <div class="tour-pane">
+          <div class="tour-copy">
+            <h3>Members pay from their phone, straight into your society’s bank account.</h3>
+            <ul class="check-list">
+              <li>Card or bank payments through Paystack, paid into your society’s own bank account.</li>
+              <li>Or a bank transfer: the member adds the reference or a screenshot, and a leader checks it.</li>
+              <li>The member sees the fee before paying, so the society gets the full amount.</li>
+              <li>The money goes to the right savings, dues or loan, and the member gets a receipt.</li>
+            </ul>
+            <a class="link-arrow" href="/product/payments/">More on member payments {% icon "arrow-right" %}</a>
+          </div>
+          <div class="tour-visual" aria-hidden="true">
+            <div class="ui-panel ui-panel-narrow">
+              <p class="ui-label">Pay into Main Savings</p>
+              <p class="ui-figure-sm">₦10,000.00</p>
+              <div class="ui-line"><span>Convenience fee</span><b>₦304.57</b></div>
+              <div class="ui-line ui-line-total"><span>You pay</span><b>₦10,304.57</b></div>
+              <span class="ui-button ui-button-block">Pay ₦10,304.57</span>
+              <p class="ui-meta text-center mt-2">{% icon "lock" %} Secured by Paystack</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pane-reports" role="tabpanel" aria-labelledby="tab-reports" tabindex="0">
+        <div class="tour-pane">
+          <div class="tour-copy">
+            <h3>Reports ready for your next meeting.</h3>
+            <ul class="check-list">
+              <li>Member statements as a PDF, for any dates you choose.</li>
+              <li>Reports on savings, loans, unpaid repayments, dues, cash hand-ins and expenses.</li>
+              <li>On bigger plans: changes over 24 months, and each branch side by side.</li>
+              <li>Download them as a PDF or a spreadsheet (CSV), or have them emailed to you regularly.</li>
+            </ul>
+            <a class="link-arrow" href="/product/reports/">More on reports {% icon "arrow-right" %}</a>
+          </div>
+          <div class="tour-visual" aria-hidden="true">
+            <div class="ui-panel">
+              <p class="ui-label">Money in and out · last 6 months</p>
+              <div class="ui-chart">
+                <i style="--h: 48%"></i><i style="--h: 62%"></i><i style="--h: 55%"></i>
+                <i style="--h: 70%"></i><i style="--h: 66%"></i><i style="--h: 84%"></i>
+              </div>
+              <div class="ui-chart-labels"><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pane-app" role="tabpanel" aria-labelledby="tab-app" tabindex="0">
+        <div class="tour-pane">
+          <div class="tour-copy">
+            <h3>Members can see their own accounts on their phone.</h3>
+            <ul class="check-list">
+              <li>Savings, dues, loans and shares. Amounts stay hidden until they enter their PIN.</li>
+              <li>They can apply for loans and empowerment programmes, and answer guarantor requests.</li>
+              <li>They get notices from the society, and a statement whenever they need one.</li>
+              <li>The app shows your society’s own colours and logo.</li>
+            </ul>
+            <a class="link-arrow" href="/for/members/">More on Coop Member {% icon "arrow-right" %}</a>
+          </div>
+          <div class="tour-visual" aria-hidden="true">
+            <div class="ui-panel ui-panel-narrow">
+              <p class="ui-label">Programmes open to you</p>
+              <div class="ui-row"><span class="ui-avatar ui-avatar-green">{% icon "heart" %}</span><span><strong>Start-up Grants</strong><br><span class="ui-meta">Grant · up to ₦40,000</span></span></div>
+              <div class="ui-row"><span class="ui-avatar ui-avatar-green">{% icon "tools" %}</span><span><strong>Skills Training</strong><br><span class="ui-meta">Training · closes 15 Dec</span></span></div>
+              <span class="ui-button ui-button-block">Apply</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- ── Who it's for ───────────────────────────────────────────────────── -#}
+<section class="section section-tint">
+  <div class="container-xl">
+    <div class="section-head">
+      <p class="eyebrow">Built for everyone in the society</p>
+      <h2>Leaders, branch staff and members each get what they need.</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="audience-card" href="/for/leadership/">
+          <span class="audience-icon">{% icon "bank" %}</span>
+          <h3>Leadership</h3>
+          <p>See funds, loans and every branch on one screen. Approve withdrawals and loans with your PIN. No money leaves the society until you approve it.</p>
+          <span class="link-arrow">For presidents and executives {% icon "arrow-right" %}</span>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a class="audience-card" href="/for/branch-staff/">
+          <span class="audience-icon">{% icon "people" %}</span>
+          <h3>Branch staff</h3>
+          <p>Register members, record payments quickly and hand in the cash you collect. No more checking notebooks at the end of the month.</p>
+          <span class="link-arrow">For secretaries and branch admins {% icon "arrow-right" %}</span>
+        </a>
+      </div>
+      <div class="col-lg-4">
+        <a class="audience-card" href="/for/members/">
+          <span class="audience-icon">{% icon "person-badge" %}</span>
+          <h3>Members</h3>
+          <p>Check your balances, pay in, apply for a loan and follow every request. You don’t have to wait for the next meeting to ask.</p>
+          <span class="link-arrow">For members {% icon "arrow-right" %}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- ── Getting started ───────────────────────────────────────────────── -#}
+<section class="section">
+  <div class="container-xl">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-4">
+        <p class="eyebrow">Getting started</p>
+        <h2>Start using it this week.</h2>
+        <p class="text-muted-strong">There’s nothing to install and no long training. Your president signs up first, then invites everyone else.</p>
+        <a class="btn btn-primary mt-2" href="{{ site.apps.signUp }}">Create your society</a>
+      </div>
+      <div class="col-lg-8">
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <div>
+              <h3>Create your society</h3>
+              <p>Your president registers the society and its first branch. Then they invite the executives and branch staff.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div>
+              <h3>Bring in your members</h3>
+              <p>Register members one by one. On Growth and up, you can also upload them with their balances from an Excel file.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div>
+              <h3>Invite them to Coop Member</h3>
+              <p>Members get an invitation by text message or email. They can see their own accounts from the first day.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- ── Security ──────────────────────────────────────────────────────── -#}
+<section class="section section-dark">
+  <div class="container-xl">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <p class="eyebrow eyebrow-light">Safety</p>
+        <h2>Made for money that belongs to all your members.</h2>
+        <p class="lead-light">A cooperative runs on trust. CoopCircle builds the checks in your bye-laws into everyday work.</p>
+        <a class="btn btn-light mt-2" href="/security/">How we keep it safe</a>
+      </div>
+      <div class="col-lg-7">
+        <div class="security-grid">
+          <div>
+            <span class="security-icon">{% icon "123" %}</span>
+            <h3>A PIN on what matters</h3>
+            <p>Approving, paying and cancelling all need the person’s own 4-digit PIN.</p>
+          </div>
+          <div>
+            <span class="security-icon">{% icon "people" %}</span>
+            <h3>Someone else checks</h3>
+            <p>Staff can’t pay their own loan to themselves or approve their own transfer.</p>
+          </div>
+          <div>
+            <span class="security-icon">{% icon "bank2" %}</span>
+            <h3>Accounts checked with the bank</h3>
+            <p>We confirm each bank account is in the owner’s name. A new account waits a short time before money can go to it.</p>
+          </div>
+          <div>
+            <span class="security-icon">{% icon "journal-text" %}</span>
+            <h3>Every change recorded</h3>
+            <p>Who did what, and when. On Professional and up, your leaders can read the full change history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- ── Pricing teaser ────────────────────────────────────────────────── -#}
+<section class="section">
+  <div class="container-xl">
+    <div class="section-head section-head-split">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>Start free. Pay as your society grows.</h2>
+      </div>
+      <a class="link-arrow" href="/pricing/">Compare every plan {% icon "arrow-right" %}</a>
+    </div>
+    <div class="row g-4">
+      {%- for plan in plans %}{% if plan.code != "enterprise" %}
+      <div class="col-sm-6 col-lg-3">
+        <div class="plan-card{% if plan.popular %} plan-card-popular{% endif %}">
+          {%- if plan.popular %}<span class="plan-badge">Most popular</span>{% endif %}
+          <h3>{{ plan.name }}</h3>
+          <p class="plan-price">{{ plan.monthly | naira }}<span class="plan-per">{% if plan.monthly > 0 %} / month{% endif %}</span></p>
+          <p class="plan-blurb">{{ plan.blurb }}</p>
+          <ul class="plan-limits">
+            <li>{{ plan.members }}</li>
+            <li>{{ plan.staff }}</li>
+            <li>{{ plan.branches }}</li>
+          </ul>
+        </div>
+      </div>
+      {%- endif %}{% endfor %}
+    </div>
+    <p class="fine-print">Prices in naira. Pay for a year and get two months free. A larger society or a union? <a href="/contact/">Talk to us about Enterprise</a>.</p>
+  </div>
+</section>
+
+{#- ── FAQ ───────────────────────────────────────────────────────────── -#}
+<section class="section section-tint">
+  <div class="container-xl">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <p class="eyebrow">Questions</p>
+        <h2>What societies ask us first.</h2>
+        <p class="text-muted-strong">Something else? <a href="/help/">Visit the Help Center</a> or <a href="/contact/">get in touch</a>.</p>
+      </div>
+      <div class="col-lg-8">
+        <div class="accordion faq" id="faq">
+          {%- for f in faqs %}
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button{% if not loop.first %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ loop.index }}" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="faq-{{ loop.index }}">{{ f.q }}</button>
+            </h3>
+            <div id="faq-{{ loop.index }}" class="accordion-collapse collapse{% if loop.first %} show{% endif %}" data-bs-parent="#faq">
+              <div class="accordion-body">{{ f.a }}</div>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta.njk" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for f in faqs %}
+    { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>

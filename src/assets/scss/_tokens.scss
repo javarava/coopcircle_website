@@ -1,0 +1,33 @@
+// CoopCircle's colours come from the logo: navy and blue, with the green of
+// the mark as the accent. Warm neutrals keep it from looking like every
+// blue software site.
+$navy: #013876;
+$navy-deep: #00264f;
+$brand: #014c9c;
+$blue: #0065bf;
+$green: #2daa30;
+$green-deep: #1e7a21;
+$green-soft: #e6f5e6;
+$blue-soft: #e8f1fb;
+
+$ink: #0f1b2d;
+$ink-2: #3d4757;
+$ink-3: #5b6474; // meets 4.5:1 on $paper
+$paper: #fbfaf7;
+$sand: #f3f1ea;
+$line: #e4e1d8;
+$white: #fff;
+
+$font-sans: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$font-display: "Outfit Variable", "Outfit", $font-sans;
+
+$radius-sm: 0.5rem;
+$radius: 0.875rem;
+$radius-lg: 1.25rem;
+$radius-xl: 1.75rem;
+
+$shadow-sm: 0 1px 2px rgba(15, 27, 45, 0.06), 0 1px 1px rgba(15, 27, 45, 0.04);
+$shadow: 0 10px 30px -12px rgba(15, 27, 45, 0.18), 0 2px 6px rgba(15, 27, 45, 0.06);
+$shadow-lg: 0 30px 60px -20px rgba(1, 56, 118, 0.35), 0 8px 20px -8px rgba(15, 27, 45, 0.12);
+
+$header-height: 72px;
