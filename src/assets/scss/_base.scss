@@ -139,16 +139,16 @@ p {
   --bs-btn-hover-border-color: #{$ink};
 }
 
-// Green with dark text: readable at every size.
+// Green with white text: readable at every size.
 .btn-accent {
   --bs-btn-bg: #{$green};
   --bs-btn-border-color: #{$green};
-  --bs-btn-color: #{$ink};
+  --bs-btn-color: #fff;
   --bs-btn-hover-bg: #5cc45e;
   --bs-btn-hover-border-color: #5cc45e;
-  --bs-btn-hover-color: #{$ink};
+  --bs-btn-hover-color: #fff;
   --bs-btn-active-bg: #5cc45e;
-  --bs-btn-active-color: #{$ink};
+  --bs-btn-active-color: #fff;
 }
 
 // ── Sections ───────────────────────────────────────────────────────────────

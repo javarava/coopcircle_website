@@ -22,5 +22,8 @@
     "bootstrap-icons": "^1.13.1",
     "pagefind": "^1.4.0",
     "sass": "^1.93.2"
+  },
+  "dependencies": {
+    "aws4fetch": "1.0.20"
   }
 }

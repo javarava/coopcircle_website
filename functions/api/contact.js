@@ -1,16 +1,22 @@
 // POST /api/contact — the website's contact form (Cloudflare Pages Function).
 //
-// Checks the fields and the Turnstile token, then emails the message with
-// Resend to CONTACT_TO, with Reply-To set to the sender. Nothing is stored.
+// Checks the fields and the Turnstile token, then sends the message with
+// Amazon SES (API v2, SendEmail with Simple content) to CONTACT_TO, BCCs the
+// two addresses below, and sets Reply-To to the sender. Nothing is stored.
 //
 // Environment (Cloudflare Pages → Settings → Variables and secrets):
-//   RESEND_API_KEY        secret; Resend API key
-//   CONTACT_TO            the inbox that receives messages
-//   CONTACT_FROM          a sender on a domain verified in Resend,
-//                         e.g. "CoopCircle website <website@coopcirclehq.com>"
-//   TURNSTILE_SECRET_KEY  secret; when set, a valid Turnstile token is required
-//
-// (Resend for now; Amazon SES later — see the app's docs/11 → Deferred work.)
+//   AWS_SES_ACCESS_KEY_ID      secret; IAM user allowed only ses:SendEmail
+//   AWS_SES_SECRET_ACCESS_KEY  secret; that user's access key
+//   AWS_SES_REGION             region of the verified coopcirclehq.com identity
+//   SES_CONFIGURATION_SET      optional; for bounce and complaint tracking
+//   CONTACT_TO                 the inbox that receives messages
+//   CONTACT_FROM               e.g. "CoopCircle website <website@coopcirclehq.com>"
+//   TURNSTILE_SECRET_KEY       secret; when set, a valid Turnstile token is required
+
+import { AwsClient } from "aws4fetch";
+
+// The addresses that also get a copy, without being shown to other recipients.
+const CONTACT_BCC = ["babatundeaniyi@gmail.com", "coopcirclesoftware@gmail.com"];
 
 const TOPICS = {
   demo: "Book a demo",
@@ -67,7 +73,11 @@ export async function onRequestPost({ request, env }) {
     if (!passed) return reply(403, "Please complete the check that you’re not a robot, then send again.");
   }
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_TO || !env.CONTACT_FROM) {
+  // Without SES set up, the form stays honest and asks people to email us.
+  if (
+    !env.AWS_SES_ACCESS_KEY_ID || !env.AWS_SES_SECRET_ACCESS_KEY || !env.AWS_SES_REGION ||
+    !env.CONTACT_TO || !env.CONTACT_FROM
+  ) {
     return reply(503, "Our contact form isn’t working right now. Please email us instead.");
   }
 
@@ -126,23 +136,51 @@ async function turnstileOk(secret, token, request) {
   }
 }
 
+/**
+ * Sends one message through SES v2. Simple content is enough here: there are
+ * no attachments, and SES turns the UTF-8 subject and text into the email.
+ * Returns true only when SES accepts the message.
+ */
 async function sendEmail(env, f) {
+  const region = env.AWS_SES_REGION;
+
+  // A fresh client per request; retries are off so a slow failure can't
+  // deliver the same contact message twice.
+  const ses = new AwsClient({
+    accessKeyId: env.AWS_SES_ACCESS_KEY_ID,
+    secretAccessKey: env.AWS_SES_SECRET_ACCESS_KEY,
+    region,
+    service: "ses",
+    retries: 0,
+  });
+
+  const payload = {
+    FromEmailAddress: env.CONTACT_FROM,
+    Destination: { ToAddresses: [env.CONTACT_TO], BccAddresses: CONTACT_BCC },
+    ReplyToAddresses: [f.email], // clean() has already flattened any line breaks.
+    Content: {
+      Simple: {
+        Subject: {
+          Data: `${TOPICS[f.topic]}: ${f.name}${f.society ? ` (${f.society})` : ""}`.slice(0, 200),
+          Charset: "UTF-8",
+        },
+        Body: { Text: { Data: emailText(f), Charset: "UTF-8" } },
+      },
+    },
+  };
+  // Optional SES configuration set, used for bounce and complaint tracking.
+  if (env.SES_CONFIGURATION_SET) payload.ConfigurationSetName = env.SES_CONFIGURATION_SET;
+
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await ses.fetch(`https://email.${region}.amazonaws.com/v2/email/outbound-emails`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from: env.CONTACT_FROM,
-        to: [env.CONTACT_TO],
-        reply_to: f.email,
-        subject: `${TOPICS[f.topic]}: ${f.name}${f.society ? ` (${f.society})` : ""}`.slice(0, 200),
-        text: emailText(f),
-      }),
+      headers: { "content-type": "application/json; charset=utf-8" },
+      body: JSON.stringify(payload),
     });
-    if (!res.ok) console.error("contact: Resend answered", res.status);
+    if (!res.ok) console.error("contact: SES answered", res.status);
     return res.ok;
   } catch (e) {
-    console.error("contact: Resend failed", e && e.name);
+    console.error("contact: SES failed", e && e.name);
     return false;
   }
 }

@@ -181,11 +181,19 @@ One-time set-up in the Cloudflare dashboard:
    `https://coopcirclehq.com` with the path and query string kept.
 5. **Contact form** (the Pages project → Settings → Variables and secrets,
    for Production and Preview):
-   - `RESEND_API_KEY` (secret), `CONTACT_TO` (the inbox that receives
-     messages), `CONTACT_FROM` (e.g. `CoopCircle website
-     <website@coopcirclehq.com>`).
-   - The sending domain must be verified in Resend: add the records Resend
-     gives you in Cloudflare DNS, set to **DNS only**.
+   - `AWS_SES_ACCESS_KEY_ID` and `AWS_SES_SECRET_ACCESS_KEY` (both secrets),
+     from a dedicated IAM user `coopcircle-website-ses`. Give it an inline
+     policy allowing only `ses:SendEmail` on
+     `arn:aws:ses:<region>:<account>:identity/coopcirclehq.com`.
+   - `AWS_SES_REGION`, the region where `coopcirclehq.com` is verified in SES.
+     `SES_CONFIGURATION_SET` is optional, for bounce and complaint tracking.
+   - `CONTACT_TO` (`hello@coopcirclehq.com`) and `CONTACT_FROM`
+     (`CoopCircle website <website@coopcirclehq.com>`). The form BCCs
+     `babatundeaniyi@gmail.com` and `coopcirclesoftware@gmail.com`; those
+     addresses are in `functions/api/contact.js`.
+   - Delete `RESEND_API_KEY`. Verify `coopcirclehq.com` in SES instead of
+     Resend, and remove Resend's DNS records once a test message arrives. If
+     SES is still in the sandbox, `CONTACT_TO` must be a verified address too.
    - Turnstile: Turnstile → add a widget for `coopcirclehq.com`, then set
      `CF_TURNSTILE_SITE_KEY` (public, used at build time) and
      `TURNSTILE_SECRET_KEY` (secret), and deploy again. Without them the
