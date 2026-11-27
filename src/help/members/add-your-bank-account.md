@@ -11,4 +11,4 @@ popular: true
 3. Choose your bank and enter your account number. We check with the bank. The account must be in your name.
 4. Confirm with your PIN.
 
-Money can be paid into a new or changed account **24 hours** after you save it. You are told whenever it changes. If you didn’t make the change, contact your society straight away.
+A new or changed account is used once **a leader of your society approves it**. You are told when it is approved, or why if it isn’t. If you didn’t make the change, contact your society straight away.

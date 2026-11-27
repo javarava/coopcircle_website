@@ -13,4 +13,4 @@ Only the president can add or change it.
 3. **Confirm it’s you** with a one-time code sent by email or text, then your PIN.
 4. Save the account.
 
-A new or changed account waits **48 hours** before payments go into it. Your leaders are told. Any of them can choose **Stop this change** if they didn’t expect it.
+A new or changed account isn’t used until **another leader approves it** (the financial secretary or treasurer). If you are the society’s only leader, you approve it yourself. Your leaders are told. Any of them can choose **Reject** if they didn’t expect it.

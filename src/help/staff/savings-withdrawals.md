@@ -13,4 +13,4 @@ Members ask to withdraw in Coop Member. Staff can also ask for them from the mem
 
 You see the member’s confirmed bank account when you pay. The member is told at each step.
 
-> A member’s new bank account can only be paid into 24 hours after it is saved.
+> A member’s new bank account can only be paid into after a leader approves it. See [Approve a member’s bank account](/help/staff/approve-bank-accounts/).

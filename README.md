@@ -61,8 +61,8 @@ branding/              the original logo files
 - Headings: Outfit; text: Inter. Both self-hosted.
 - Copy: plain, sentence case, curly apostrophes (’), naira as `₦7,000`.
   See **Writing** below.
-- No invented customers, numbers or quotes. Product illustrations are drawn in
-  HTML with sample figures.
+- No invented customers, numbers or quotes. The home hero uses screenshots from
+  the demo apps; other product illustrations are drawn in HTML with sample figures.
 - Check every page at 360, 768, 1,024 and 1,440 px with no sideways scrolling.
 
 ### Writing

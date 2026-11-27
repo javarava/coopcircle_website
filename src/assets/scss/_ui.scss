@@ -334,10 +334,16 @@
 }
 
 .ui-window-body {
-  padding: 1.5rem;
-  @include media-breakpoint-up(md) {
-    padding: 1.75rem 11rem 1.75rem 1.75rem;
-  }
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.ui-window-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
 }
 
 .ui-phone {
@@ -396,6 +402,41 @@
     background: $green;
     color: $ink;
   }
+}
+
+.ui-phone.ui-phone-photo {
+  --screen-left: 5.96%;
+  --screen-top: 7.2%;
+  --screen-width: 88.34%;
+  --screen-height: 90.23%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: 386 / 778;
+  overflow: hidden;
+  filter: drop-shadow(0 1.25rem 1.75rem rgba($ink, 0.18));
+}
+
+.ui-phone-photo .ui-phone-shot {
+  position: absolute;
+  z-index: 0;
+  left: var(--screen-left);
+  top: var(--screen-top);
+  width: var(--screen-width);
+  height: var(--screen-height);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ui-phone-photo .ui-phone-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 // ── More illustration parts (feature pages) ───────────────────────────────

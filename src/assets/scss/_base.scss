@@ -94,6 +94,7 @@ p {
 
 .lead {
   color: $ink-2;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
 }
 
 .lead-light {
