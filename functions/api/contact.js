@@ -177,10 +177,12 @@ async function sendEmail(env, f) {
       headers: { "content-type": "application/json; charset=utf-8" },
       body: JSON.stringify(payload),
     });
-    if (!res.ok) console.error("contact: SES answered", res.status);
+    // The response body carries SES's reason (unverified address, denied by
+    // IAM, wrong region…), so include it in the live Pages Function logs.
+    if (!res.ok) console.error("contact: SES answered", res.status, await res.text());
     return res.ok;
   } catch (e) {
-    console.error("contact: SES failed", e && e.name);
+    console.error("contact: SES failed", e && e.name, e && e.message);
     return false;
   }
 }
