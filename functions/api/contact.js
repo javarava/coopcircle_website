@@ -8,7 +8,8 @@
 //   AWS_SES_ACCESS_KEY_ID      secret; IAM user allowed only ses:SendEmail
 //   AWS_SES_SECRET_ACCESS_KEY  secret; that user's access key
 //   AWS_SES_REGION             region of the verified coopcirclehq.com identity
-//   SES_CONFIGURATION_SET      optional; for bounce and complaint tracking
+//   SES_CONFIGURATION_SET      optional; needs ses:SendEmail on the
+//                              configuration-set ARN in the IAM policy too
 //   CONTACT_TO                 the inbox that receives messages
 //   CONTACT_FROM               e.g. "CoopCircle website <website@coopcirclehq.com>"
 //   TURNSTILE_SECRET_KEY       secret; when set, a valid Turnstile token is required

@@ -187,6 +187,8 @@ One-time set-up in the Cloudflare dashboard:
      `arn:aws:ses:<region>:<account>:identity/coopcirclehq.com`.
    - `AWS_SES_REGION`, the region where `coopcirclehq.com` is verified in SES.
      `SES_CONFIGURATION_SET` is optional, for bounce and complaint tracking.
+     If you set it, the IAM policy also needs `ses:SendEmail` on
+     `arn:aws:ses:<region>:<account>:configuration-set/<name>`.
    - `CONTACT_TO` (`hello@coopcirclehq.com`) and `CONTACT_FROM`
      (`CoopCircle website <website@coopcirclehq.com>`). The form BCCs
      `babatundeaniyi@gmail.com` and `coopcirclesoftware@gmail.com`; those
