@@ -8,7 +8,7 @@ app: "Coop Member"
 popular: true
 ---
 
-1. Find what you are paying for: **Pay online** on a savings account, fund, loan
+1. Find what you are paying for: **Deposit** on a savings account, fund, loan
    or shares, or a due.
 2. Enter the amount.
 3. Check the **convenience fee** (a small fee for paying online) and the total

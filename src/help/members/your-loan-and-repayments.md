@@ -12,4 +12,4 @@ Open the loan from **Loans** to see:
 - the **payments** you have made, each with its details;
 - what is left to pay.
 
-Repay at your branch. Or use **Pay online** on the loan, if your society takes payments in the app.
+Repay at your branch. Or use **Make payment** on the loan, if your society takes payments in the app.
