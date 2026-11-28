@@ -182,13 +182,14 @@ One-time set-up in the Cloudflare dashboard:
 5. **Contact form** (the Pages project → Settings → Variables and secrets,
    for Production and Preview):
    - `AWS_SES_ACCESS_KEY_ID` and `AWS_SES_SECRET_ACCESS_KEY` (both secrets),
-     from a dedicated IAM user `coopcircle-website-ses`. Give it an inline
-     policy allowing only `ses:SendEmail` on
-     `arn:aws:ses:<region>:<account>:identity/coopcirclehq.com`.
-   - `AWS_SES_REGION`, the region where `coopcirclehq.com` is verified in SES.
-     `SES_CONFIGURATION_SET` is optional, for bounce and complaint tracking.
-     If you set it, the IAM policy also needs `ses:SendEmail` on
+     from a dedicated IAM user `coopcircle-website-ses`. Its inline policy
+     needs `ses:SendEmail` on both the identity
+     `arn:aws:ses:<region>:<account>:identity/coopcirclehq.com` and, when a
+     configuration set is used (including as the identity's default),
      `arn:aws:ses:<region>:<account>:configuration-set/<name>`.
+   - `AWS_SES_REGION`, the region where `coopcirclehq.com` is verified in SES.
+     `SES_CONFIGURATION_SET` is optional, for bounce and complaint tracking;
+     a default configuration set on the identity applies without it.
    - `CONTACT_TO` (`hello@coopcirclehq.com`) and `CONTACT_FROM`
      (`CoopCircle website <website@coopcirclehq.com>`). The form BCCs
      `babatundeaniyi@gmail.com` and `coopcirclesoftware@gmail.com`; those
